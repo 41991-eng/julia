@@ -1,1364 +1,616 @@
+
+hipnose trabalho.html
+
+Página
+1
+/
+1
+100%
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hello Kitty World 🎀 Quiz & Dress Up</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<title>HYPNOS — Transformação através da consciência</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#000;color:#fff;font-family:'Inter',sans-serif;overflow-x:hidden}
 
-:root {
-  --pink: #FF3E8A;
-  --pink-light: #FF85B3;
-  --pink-pale: #FFD6E8;
-  --pink-ultra: #FFF0F5;
-  --pink-deep: #C0215C;
-  --yellow: #FFD700;
-  --yellow-deep: #C8A000;
-  --white: #FFFFFF;
-  --gray: #666;
-  --border-r: 18px;
-}
+@keyframes glitch1{0%,100%{clip-path:inset(0 0 95% 0);transform:translate(-4px)}20%{clip-path:inset(30% 0 50% 0);transform:translate(4px)}40%{clip-path:inset(70% 0 10% 0);transform:translate(-2px)}60%{clip-path:inset(10% 0 80% 0);transform:translate(3px)}80%{clip-path:inset(50% 0 30% 0);transform:translate(-3px)}}
+@keyframes glitch2{0%,100%{clip-path:inset(80% 0 5% 0);transform:translate(4px)}25%{clip-path:inset(20% 0 60% 0);transform:translate(-4px)}50%{clip-path:inset(55% 0 25% 0);transform:translate(2px)}75%{clip-path:inset(5% 0 85% 0);transform:translate(-2px)}}
+@keyframes huerot{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(360deg)}}
+@keyframes pulse{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.03)}}
+@keyframes scanline{0%{top:-5%}100%{top:105%}}
+@keyframes rgbShift{0%{text-shadow:2px 0 #f0f,-2px 0 #0ff}50%{text-shadow:-3px 0 #0ff,3px 0 #f0f}100%{text-shadow:2px 0 #f0f,-2px 0 #0ff}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 
-html { scroll-behavior: smooth; }
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:200;padding:1rem 2.5rem;display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,0.7);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,0,255,0.15)}
+.logo{font-family:'Playfair Display',serif;font-size:1.4rem;letter-spacing:3px;animation:rgbShift 3s infinite;color:#fff;text-decoration:none}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,0.45);text-decoration:none;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;transition:color .3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:linear-gradient(90deg,#f0f,#0ff);transition:width .3s}
+.nav-links a:hover{color:#fff}
+.nav-links a:hover::after{width:100%}
 
-body {
-  font-family: 'Nunito', sans-serif;
-  background: var(--pink-ultra);
-  min-height: 100vh;
-  overflow-x: hidden;
-}
+/* HERO */
+.hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+#bgC{position:absolute;inset:0;width:100%;height:100%}
+.scan{position:absolute;left:0;width:100%;height:6px;background:rgba(255,255,255,0.025);animation:scanline 3.5s linear infinite;pointer-events:none;z-index:3}
+.hero-content{position:relative;z-index:10;text-align:center;padding:2rem;max-width:800px;animation:fadeInUp 1.5s ease}
+.eyebrow{font-size:.68rem;letter-spacing:6px;text-transform:uppercase;color:#f0f;margin-bottom:1.5rem;animation:pulse 2s infinite;display:block}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,6.5vw,5.2rem);line-height:1.05;margin-bottom:1.5rem;color:#fff;position:relative}
+.glitch{position:relative;display:inline-block;animation:rgbShift 4s infinite}
+.glitch::before,.glitch::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%}
+.glitch::before{color:#f0f;animation:glitch1 2.5s infinite;opacity:.65}
+.glitch::after{color:#0ff;animation:glitch2 2.8s infinite;opacity:.65}
+.hero-sub{font-size:.95rem;color:rgba(255,255,255,0.5);line-height:1.9;margin-bottom:2.5rem;font-weight:300;max-width:480px;margin-left:auto;margin-right:auto}
+.btn-main{display:inline-block;padding:.9rem 2.8rem;border:1px solid #f0f;color:#fff;text-decoration:none;font-size:.78rem;letter-spacing:3px;text-transform:uppercase;cursor:pointer;background:transparent;transition:all .3s;position:relative;overflow:hidden}
+.btn-main::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,0,255,0.2),rgba(0,255,255,0.2));opacity:0;transition:opacity .3s}
+.btn-main:hover::before{opacity:1}
+.btn-main:hover{box-shadow:0 0 40px rgba(255,0,255,0.5),0 0 80px rgba(0,255,255,0.2)}
 
-/* ── FLOATING BG ELEMENTS ── */
-.bg-floats {
-  position: fixed; inset: 0;
-  pointer-events: none; z-index: 0;
-  overflow: hidden;
-}
-.bg-floats span {
-  position: absolute;
-  font-size: 22px;
-  opacity: 0.07;
-  animation: floatBg linear infinite;
-}
-@keyframes floatBg {
-  from { transform: translateY(110vh) rotate(0deg); }
-  to   { transform: translateY(-10vh) rotate(360deg); }
-}
+/* SECTIONS */
+section{padding:7rem 3rem;position:relative}
+.inner{max-width:1100px;margin:0 auto}
+.slabel{font-size:.63rem;letter-spacing:5px;text-transform:uppercase;color:#f0f;margin-bottom:1rem;display:block}
+.stitle{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);margin-bottom:1.5rem;animation:huerot 8s linear infinite}
+.sbody{font-size:.92rem;color:rgba(255,255,255,0.5);line-height:1.9;font-weight:300}
 
-/* ── HEADER ── */
-header {
-  position: sticky; top: 0; z-index: 100;
-  background: var(--pink);
-  box-shadow: 0 4px 0 var(--pink-deep);
-  padding: 0 24px;
-  display: flex; align-items: center; justify-content: space-between;
-  height: 66px;
-}
-.logo {
-  display: flex; align-items: center; gap: 12px;
-  text-decoration: none;
-}
-.logo-icon {
-  width: 44px; height: 44px;
-}
-.logo-text {
-  font-size: 22px; font-weight: 900; color: #fff;
-  text-shadow: 2px 2px 0 var(--pink-deep);
-  letter-spacing: -0.5px;
-}
-.logo-text em { color: var(--pink-pale); font-style: normal; }
+/* O QUE É */
+.what-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.fact-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-top:2rem}
+.fact-item{padding:.75rem 1rem;border:1px solid rgba(255,0,255,0.18);font-size:.75rem;color:rgba(255,255,255,0.55);letter-spacing:1px;transition:all .3s;cursor:default}
+.fact-item:hover{border-color:rgba(0,255,255,0.5);color:#fff;box-shadow:0 0 18px rgba(0,255,255,0.12)}
+.what-visual{display:flex;align-items:center;justify-content:center}
 
-nav { display: flex; gap: 8px; }
-.nav-btn {
-  background: rgba(255,255,255,0.2);
-  border: 2px solid rgba(255,255,255,0.5);
-  color: #fff;
-  font-family: 'Nunito', sans-serif;
-  font-weight: 800; font-size: 14px;
-  padding: 8px 20px; border-radius: 30px;
-  cursor: pointer; transition: all 0.2s;
-  text-decoration: none; display: inline-block;
-}
-.nav-btn:hover, .nav-btn.active {
-  background: #fff; color: var(--pink);
-  border-color: #fff;
-  transform: translateY(-1px);
-}
+/* COMO FUNCIONA */
+.how-bg{background:linear-gradient(180deg,#000 0%,#060010 50%,#000 100%)}
+.steps-wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:3rem}
+.step-card{padding:1.5rem;border:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;transition:all .4s}
+.step-card::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,#f0f,#0ff,#f0f);transform:scaleX(0);transition:transform .4s}
+.step-card:hover{border-color:rgba(255,0,255,0.3);background:rgba(255,0,255,0.03)}
+.step-card:hover::after{transform:scaleX(1)}
+.step-num{font-family:'Playfair Display',serif;font-size:4rem;color:rgba(255,0,255,0.06);position:absolute;top:0;right:.5rem;line-height:1}
+.step-card h3{font-size:.82rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:#f0f;margin-bottom:.5rem;margin-top:.8rem}
+.step-card p{font-size:.78rem;color:rgba(255,255,255,0.45);line-height:1.7}
 
-/* ── HERO SECTION ── */
-.hero {
-  position: relative; z-index: 1;
-  background: linear-gradient(135deg, #FF3E8A 0%, #FF6BAD 40%, #FF9DC9 100%);
-  overflow: hidden;
-  padding: 60px 40px 80px;
-  text-align: center;
-}
-.hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 10 C30 10 36 4 42 10 C48 16 42 22 36 18 C30 14 30 10 30 10Z' fill='rgba(255,255,255,0.06)'/%3E%3Cpath d='M10 40 C10 40 16 34 22 40 C28 46 22 52 16 48 C10 44 10 40 10 40Z' fill='rgba(255,255,255,0.06)'/%3E%3C/svg%3E");
-}
-.hero-inner { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; }
+/* TIPOS */
+.types-bg{background:radial-gradient(ellipse at 50% 50%,#080018 0%,#000 65%)}
+.types-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,0,255,0.08);margin-top:3rem;border:1px solid rgba(255,0,255,0.08)}
+.type-card{background:#000;padding:1.5rem;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+.type-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s}
+.type-card:hover::before,.type-card.active::before{opacity:1}
+.type-card:nth-child(1)::before{background:linear-gradient(135deg,rgba(255,0,255,0.07),transparent)}
+.type-card:nth-child(2)::before{background:linear-gradient(135deg,rgba(0,255,255,0.07),transparent)}
+.type-card:nth-child(3)::before{background:linear-gradient(135deg,rgba(255,255,0,0.07),transparent)}
+.type-card:nth-child(4)::before{background:linear-gradient(135deg,rgba(0,255,128,0.07),transparent)}
+.type-card:nth-child(5)::before{background:linear-gradient(135deg,rgba(128,0,255,0.07),transparent)}
+.type-card:nth-child(6)::before{background:linear-gradient(135deg,rgba(255,128,0,0.07),transparent)}
+.type-card:nth-child(7)::before{background:linear-gradient(135deg,rgba(255,0,128,0.07),transparent)}
+.type-card:nth-child(8)::before{background:linear-gradient(135deg,rgba(0,128,255,0.07),transparent)}
+.type-card:nth-child(9)::before{background:linear-gradient(135deg,rgba(255,255,128,0.07),transparent)}
+.type-name{font-family:'Playfair Display',serif;font-size:.92rem;color:#fff;margin-bottom:.25rem;margin-top:.6rem}
+.type-tag{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,0,255,0.7)}
+.type-desc{font-size:.76rem;color:rgba(255,255,255,0.45);line-height:1.7;display:none;margin-top:.7rem;border-top:1px solid rgba(255,255,255,0.05);padding-top:.7rem}
+.type-card.active .type-desc{display:block}
+.type-card.active .type-name{animation:rgbShift 3s infinite}
 
-.hero-badge {
-  display: inline-block;
-  background: rgba(255,255,255,0.25);
-  border: 2px solid rgba(255,255,255,0.5);
-  color: #fff; font-weight: 800; font-size: 12px;
-  padding: 5px 16px; border-radius: 30px;
-  letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 20px;
-}
-.hero h1 {
-  font-size: clamp(36px, 6vw, 64px);
-  font-weight: 900; color: #fff;
-  text-shadow: 3px 3px 0 var(--pink-deep);
-  line-height: 1.1; margin-bottom: 16px;
-}
-.hero p {
-  font-size: 18px; color: rgba(255,255,255,0.9);
-  max-width: 500px; margin: 0 auto 36px;
-  line-height: 1.6;
-}
-.hero-chars {
-  display: flex; justify-content: center; align-items: flex-end;
-  gap: 24px; margin-bottom: 36px;
-  flex-wrap: wrap;
-}
-.hero-char-card {
-  background: rgba(255,255,255,0.18);
-  border: 2px solid rgba(255,255,255,0.35);
-  border-radius: 20px;
-  padding: 16px 12px 10px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.25s;
-  backdrop-filter: blur(4px);
-}
-.hero-char-card:hover {
-  background: rgba(255,255,255,0.3);
-  transform: translateY(-6px) scale(1.04);
-  border-color: rgba(255,255,255,0.7);
-}
-.hero-char-card svg { display: block; margin: 0 auto; }
-.hero-char-card span {
-  display: block; color: #fff; font-weight: 800;
-  font-size: 12px; margin-top: 8px;
-  text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
-}
-.hero-cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-.cta-btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: #fff; color: var(--pink);
-  font-family: 'Nunito', sans-serif;
-  font-weight: 900; font-size: 16px;
-  padding: 14px 32px; border-radius: 40px;
-  border: none; cursor: pointer;
-  box-shadow: 0 6px 0 var(--pink-deep);
-  transition: all 0.2s; text-decoration: none;
-}
-.cta-btn:hover { transform: translateY(-3px); box-shadow: 0 9px 0 var(--pink-deep); }
-.cta-btn:active { transform: translateY(2px); box-shadow: 0 3px 0 var(--pink-deep); }
-.cta-btn.secondary {
-  background: transparent;
-  border: 3px solid rgba(255,255,255,0.7);
-  color: #fff; box-shadow: 0 6px 0 rgba(0,0,0,0.15);
-}
-.cta-btn.secondary:hover { background: rgba(255,255,255,0.15); }
+/* PORTAL */
+.portal-section{text-align:center;background:radial-gradient(ellipse at 50% 30%,#0a0020 0%,#000 70%)}
+.portal-wrap{position:relative;display:inline-block;margin:2rem auto}
+#mainPortal{border-radius:50%;display:block;margin:0 auto}
+.portal-glow{position:absolute;inset:-20px;border-radius:50%;pointer-events:none;animation:pulse 2s infinite}
+.portal-controls{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;margin:1.5rem 0 2rem}
+.pbtn{padding:.5rem 1.2rem;border:1px solid rgba(255,255,255,0.12);background:transparent;color:rgba(255,255,255,0.45);font-size:.68rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .3s;border-radius:100px}
+.pbtn.active,.pbtn:hover{border-color:#f0f;color:#fff;box-shadow:0 0 18px rgba(255,0,255,0.35)}
+.speed-row{display:flex;align-items:center;gap:1rem;justify-content:center;margin-top:1.2rem}
+.speed-row label{font-size:.68rem;color:rgba(255,255,255,0.35);letter-spacing:2px}
+input[type=range]{width:180px;accent-color:#f0f;cursor:pointer}
+.hint{font-size:.68rem;color:rgba(255,255,255,0.25);margin-top:1rem;letter-spacing:2px;animation:pulse 3.5s infinite;display:block}
 
-/* ── WAVE DIVIDER ── */
-.wave {
-  display: block; width: 100%; height: 60px;
-  margin-top: -2px;
-}
+/* PARTICLES */
+#pCanvas{position:fixed;inset:0;pointer-events:none;z-index:1}
 
-/* ── SECTION WRAPPER ── */
-.section { padding: 60px 24px; position: relative; z-index: 1; }
-.section-inner { max-width: 960px; margin: 0 auto; }
-.section-title {
-  text-align: center; margin-bottom: 40px;
-}
-.section-title h2 {
-  font-size: 32px; font-weight: 900;
-  color: var(--pink); margin-bottom: 8px;
-}
-.section-title p { color: var(--gray); font-size: 16px; }
-.pill-label {
-  display: inline-block;
-  background: var(--pink-pale);
-  color: var(--pink);
-  font-weight: 800; font-size: 11px;
-  padding: 4px 14px; border-radius: 20px;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  margin-bottom: 12px;
-}
+footer{padding:2.5rem;text-align:center;border-top:1px solid rgba(255,0,255,0.08)}
+footer p{font-size:.7rem;color:rgba(255,255,255,0.18);letter-spacing:2px}
 
-/* ── CHARACTERS GALLERY ── */
-#characters { background: #fff; }
-.chars-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+@media(max-width:900px){
+  .what-grid{grid-template-columns:1fr}
+  .what-visual{display:none}
+  .steps-wrap{grid-template-columns:1fr 1fr}
+  .types-grid{grid-template-columns:1fr 1fr}
 }
-.char-card {
-  background: var(--pink-ultra);
-  border: 2.5px solid var(--pink-pale);
-  border-radius: 24px;
-  padding: 28px 16px 20px;
-  text-align: center;
-  transition: all 0.25s;
-  cursor: default;
-}
-.char-card:hover {
-  border-color: var(--pink-light);
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(255,62,138,0.15);
-}
-.char-card svg { margin: 0 auto 12px; display: block; }
-.char-card h3 { font-size: 18px; font-weight: 900; color: var(--pink); margin-bottom: 6px; }
-.char-card p { font-size: 13px; color: var(--gray); line-height: 1.5; }
-.char-tag {
-  display: inline-block;
-  background: var(--pink);
-  color: #fff; font-size: 11px; font-weight: 800;
-  padding: 3px 10px; border-radius: 10px;
-  margin-top: 10px; letter-spacing: 0.5px;
-}
-
-/* ── DRESS UP ── */
-#dressup { background: linear-gradient(180deg, var(--pink-ultra) 0%, #fff5fb 100%); }
-.dressup-layout {
-  display: grid;
-  grid-template-columns: 220px 1fr 220px;
-  gap: 20px;
-  align-items: start;
-}
-@media (max-width: 720px) {
-  .dressup-layout { grid-template-columns: 1fr; }
-}
-.stage-box {
-  background: linear-gradient(180deg, #FFD6E8 0%, #FFECF5 100%);
-  border: 3px solid var(--pink-pale);
-  border-radius: 28px;
-  padding: 24px 16px 20px;
-  text-align: center;
-  grid-column: 2;
-  position: relative;
-  overflow: hidden;
-  min-height: 360px;
-}
-.stage-box::before {
-  content: '';
-  position: absolute; bottom: 0; left: 0; right: 0;
-  height: 80px;
-  background: linear-gradient(0deg, rgba(255,182,215,0.4), transparent);
-}
-#stageCanvas {
-  display: block; margin: 0 auto;
-  position: relative; z-index: 2;
-  filter: drop-shadow(0 8px 16px rgba(255,62,138,0.2));
-}
-.char-switcher {
-  display: flex; gap: 8px; justify-content: center;
-  flex-wrap: wrap; margin-top: 16px; position: relative; z-index: 2;
-}
-.char-sw-btn {
-  background: #fff; border: 2.5px solid var(--pink-pale);
-  border-radius: 14px; padding: 6px 14px;
-  font-family: 'Nunito', sans-serif;
-  font-weight: 800; font-size: 12px;
-  color: var(--pink); cursor: pointer; transition: all 0.2s;
-}
-.char-sw-btn:hover, .char-sw-btn.active {
-  background: var(--pink); color: #fff;
-  border-color: var(--pink);
-  transform: scale(1.06);
-}
-.wardrobe-col { display: flex; flex-direction: column; gap: 14px; }
-.wb-panel {
-  background: #fff;
-  border: 2.5px solid var(--pink-pale);
-  border-radius: 20px; overflow: hidden;
-}
-.wb-head {
-  background: var(--pink);
-  color: #fff; font-weight: 800; font-size: 13px;
-  padding: 9px 14px; letter-spacing: 0.3px;
-}
-.wb-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 7px; padding: 10px;
-}
-.wb-item {
-  aspect-ratio: 1;
-  background: var(--pink-ultra);
-  border: 2px solid var(--pink-pale);
-  border-radius: 12px;
-  font-size: 20px;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; transition: all 0.15s;
-  position: relative;
-}
-.wb-item:hover {
-  background: var(--pink-pale);
-  border-color: var(--pink-light);
-  transform: scale(1.1);
-}
-.wb-item.active {
-  background: var(--pink);
-  border-color: var(--pink-deep);
-  box-shadow: 0 3px 0 var(--pink-deep);
-}
-.wb-item.active::after {
-  content: '✓';
-  position: absolute; bottom: 2px; right: 4px;
-  font-size: 9px; color: #fff; font-weight: 900;
-}
-.wb-item.wb-none { font-size: 13px; color: var(--pink-light); font-weight: 700; }
-.fun-strip {
-  background: var(--pink);
-  color: #fff; font-size: 13px; font-weight: 700;
-  padding: 10px 16px; border-radius: 12px;
-  text-align: center; margin-top: 8px;
-  line-height: 1.4;
-  transition: opacity 0.3s;
-}
-
-/* ── QUIZ ── */
-#quiz { background: #fff; }
-.quiz-layout { max-width: 680px; margin: 0 auto; }
-.quiz-topbar {
-  display: flex; align-items: center; gap: 12px; margin-bottom: 24px;
-}
-.q-num { font-size: 13px; font-weight: 800; color: var(--pink); white-space: nowrap; }
-.prog-track {
-  flex: 1; height: 14px;
-  background: var(--pink-pale);
-  border-radius: 10px; overflow: hidden;
-  border: 1.5px solid var(--pink-pale);
-}
-.prog-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--pink) 0%, var(--pink-light) 100%);
-  border-radius: 10px;
-  transition: width 0.5s ease;
-}
-.score-pill {
-  background: var(--yellow);
-  color: var(--yellow-deep);
-  font-weight: 900; font-size: 14px;
-  padding: 5px 14px; border-radius: 20px;
-  box-shadow: 0 3px 0 var(--yellow-deep);
-  white-space: nowrap;
-}
-.quiz-card {
-  background: var(--pink-ultra);
-  border: 3px solid var(--pink-pale);
-  border-radius: 28px; padding: 28px;
-  box-shadow: 0 6px 0 var(--pink-pale);
-}
-.quiz-question-row {
-  display: flex; gap: 20px; align-items: flex-start;
-  margin-bottom: 24px;
-}
-.quiz-kitty { flex-shrink: 0; }
-.speech-bubble {
-  background: #fff;
-  border: 2.5px solid var(--pink-pale);
-  border-radius: 6px 18px 18px 18px;
-  padding: 16px 18px; flex: 1;
-  position: relative;
-}
-.speech-bubble::before {
-  content: '';
-  position: absolute; left: -13px; top: 14px;
-  border: 9px solid transparent;
-  border-right-color: var(--pink-pale);
-}
-.speech-bubble::after {
-  content: '';
-  position: absolute; left: -9px; top: 16px;
-  border: 7px solid transparent;
-  border-right-color: #fff;
-}
-.q-cat {
-  font-size: 10px; font-weight: 900; color: var(--pink);
-  letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;
-}
-.q-text { font-size: 17px; font-weight: 700; color: #333; line-height: 1.4; }
-.answers-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-}
-.ans-btn {
-  background: #fff;
-  border: 2.5px solid var(--pink-pale);
-  border-radius: 16px;
-  padding: 13px 16px;
-  font-family: 'Nunito', sans-serif;
-  font-size: 14px; font-weight: 700; color: #444;
-  cursor: pointer; text-align: left;
-  transition: all 0.2s; line-height: 1.3;
-}
-.ans-btn:hover:not(:disabled) {
-  background: var(--pink-pale);
-  border-color: var(--pink-light);
-  color: var(--pink);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 0 var(--pink-pale);
-}
-.ans-btn .letter {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 22px; height: 22px;
-  background: var(--pink-pale);
-  color: var(--pink); font-size: 12px; font-weight: 900;
-  border-radius: 50%; margin-right: 8px; flex-shrink: 0;
-  vertical-align: middle;
-}
-.ans-btn.correct { background: #D4EDDA; border-color: #28A745; color: #155724; }
-.ans-btn.correct .letter { background: #28A745; color: #fff; }
-.ans-btn.wrong { background: #F8D7DA; border-color: #DC3545; color: #721C24; }
-.ans-btn.wrong .letter { background: #DC3545; color: #fff; }
-.ans-btn:disabled { cursor: default; }
-.feedback-box {
-  margin-top: 14px;
-  padding: 12px 16px;
-  border-radius: 14px;
-  font-size: 14px; font-weight: 700; line-height: 1.4;
-  display: none;
-}
-.feedback-box.correct { background: #D4EDDA; color: #155724; display: block; }
-.feedback-box.wrong { background: #F8D7DA; color: #721C24; display: block; }
-.next-btn {
-  display: block; margin: 18px auto 0;
-  background: var(--pink); color: #fff;
-  border: none; border-radius: 30px;
-  font-family: 'Nunito', sans-serif;
-  font-weight: 900; font-size: 15px;
-  padding: 13px 36px;
-  cursor: pointer;
-  box-shadow: 0 5px 0 var(--pink-deep);
-  transition: all 0.2s;
-  display: none;
-}
-.next-btn.show { display: block; }
-.next-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 0 var(--pink-deep); }
-.next-btn:active { transform: translateY(2px); box-shadow: 0 3px 0 var(--pink-deep); }
-
-/* ── RESULT ── */
-.result-screen {
-  display: none; text-align: center;
-}
-.result-screen.show { display: block; }
-.result-card {
-  background: var(--pink-ultra);
-  border: 3px solid var(--pink-pale);
-  border-radius: 32px;
-  padding: 40px 32px;
-  box-shadow: 0 8px 0 var(--pink-pale);
-  max-width: 500px; margin: 0 auto;
-}
-.res-stars { font-size: 36px; margin-bottom: 10px; letter-spacing: 6px; }
-.res-title { font-size: 30px; font-weight: 900; color: var(--pink); margin-bottom: 10px; }
-.res-score { font-size: 18px; font-weight: 700; color: #555; margin-bottom: 20px; }
-.res-score b { font-size: 28px; color: var(--pink); }
-.res-msg {
-  background: #fff; border: 2px solid var(--pink-pale);
-  border-radius: 16px; padding: 16px;
-  font-size: 15px; color: #555; line-height: 1.5;
-  margin-bottom: 24px;
-}
-.res-char { margin: 0 auto 24px; display: block; }
-.restart-btn {
-  background: var(--pink); color: #fff;
-  border: none; border-radius: 30px;
-  font-family: 'Nunito', sans-serif;
-  font-weight: 900; font-size: 16px;
-  padding: 14px 40px; cursor: pointer;
-  box-shadow: 0 5px 0 var(--pink-deep);
-  transition: all 0.2s;
-}
-.restart-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 0 var(--pink-deep); }
-
-/* ── FOOTER ── */
-footer {
-  background: var(--pink);
-  box-shadow: inset 0 4px 0 var(--pink-deep);
-  padding: 32px 24px;
-  text-align: center;
-  position: relative; z-index: 1;
-}
-footer p { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 600; }
-footer .footer-logo { font-size: 28px; margin-bottom: 8px; }
-
-/* ── RESPONSIVE ── */
-@media (max-width: 600px) {
-  .answers-grid { grid-template-columns: 1fr; }
-  .hero { padding: 40px 20px 60px; }
-  header { padding: 0 16px; }
-  .logo-text { font-size: 17px; }
-  .nav-btn { padding: 7px 14px; font-size: 12px; }
-}
-
-/* ── ANIMATIONS ── */
-@keyframes bounceIn {
-  from { transform: scale(0.8); opacity: 0; }
-  to   { transform: scale(1); opacity: 1; }
-}
-.bounce-in { animation: bounceIn 0.35s ease; }
-
-@keyframes pulse-heart {
-  0%, 100% { transform: scale(1); }
-  50%       { transform: scale(1.15); }
+@media(max-width:600px){
+  nav{padding:1rem 1.2rem}
+  .nav-links{display:none}
+  section{padding:4rem 1.2rem}
+  .steps-wrap{grid-template-columns:1fr}
+  .types-grid{grid-template-columns:1fr}
+  #mainPortal{width:300px!important;height:300px!important}
 }
 </style>
 </head>
 <body>
 
-<!-- Floating BG -->
-<div class="bg-floats" id="bgFloats"></div>
+<canvas id="pCanvas"></canvas>
 
-<!-- ══ HEADER ══ -->
-<header>
-  <a class="logo" href="#top">
-    <!-- Mini Hello Kitty logo SVG -->
-    <svg class="logo-icon" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="22" cy="24" rx="14" ry="15" fill="#fff" stroke="#ffb3cc" stroke-width="1.5"/>
-      <ellipse cx="10" cy="12" rx="6" ry="7" fill="#fff" stroke="#ffb3cc" stroke-width="1.5"/>
-      <ellipse cx="34" cy="12" rx="6" ry="7" fill="#fff" stroke="#ffb3cc" stroke-width="1.5"/>
-      <ellipse cx="10" cy="12" rx="3.5" ry="4.5" fill="#FFD6E8"/>
-      <ellipse cx="34" cy="12" rx="3.5" ry="4.5" fill="#FFD6E8"/>
-      <ellipse cx="17" cy="22" rx="3" ry="3.5" fill="#222"/>
-      <ellipse cx="27" cy="22" rx="3" ry="3.5" fill="#222"/>
-      <circle cx="18.5" cy="20.5" r="1.2" fill="#fff"/>
-      <circle cx="28.5" cy="20.5" r="1.2" fill="#fff"/>
-      <ellipse cx="22" cy="27" rx="2.5" ry="1.8" fill="#FFD700"/>
-      <ellipse cx="14" cy="29.5" rx="5" ry="3" fill="#FFB3CC" opacity="0.6"/>
-      <ellipse cx="30" cy="29.5" rx="5" ry="3" fill="#FFB3CC" opacity="0.6"/>
-      <!-- bow -->
-      <path d="M28 10 Q33 6 38 10 Q33 14 28 10Z" fill="#FF3E8A"/>
-      <path d="M38 10 Q43 6 44 10 Q43 14 38 10Z" fill="#FF3E8A"/>
-      <circle cx="38" cy="10" r="2.5" fill="#CC1155"/>
-    </svg>
-    <span class="logo-text">Hello <em>Kitty</em> World</span>
-  </a>
-  <nav>
-    <button class="nav-btn active" onclick="scrollTo('top')">🏠 Início</button>
-    <button class="nav-btn" onclick="scrollTo('dressup')">👗 Dress Up</button>
-    <button class="nav-btn" onclick="scrollTo('quiz')">❓ Quiz</button>
-  </nav>
-</header>
+<nav>
+  <a class="logo" href="#">✦ HYPNOS</a>
+  <ul class="nav-links">
+    <li><a href="#oque">Essência</a></li>
+    <li><a href="#como">Processo</a></li>
+    <li><a href="#tipos">Tipos</a></li>
+    <li><a href="#portal">Portal</a></li>
+  </ul>
+</nav>
 
-<!-- ══ HERO ══ -->
-<section class="hero" id="top">
-  <div class="hero-inner">
-    <div class="hero-badge">🎀 Mundo Sanrio — desde 1974</div>
-    <h1>Bem-vinda ao mundo<br>da Hello Kitty! 🐱</h1>
-    <p>Vista seus personagens favoritos, descubra curiosidades e teste seu conhecimento no quiz mais fofo da internet!</p>
-
-    <div class="hero-chars">
-      <!-- Hello Kitty grande no hero -->
-      <div class="hero-char-card" onclick="scrollTo('dressup'); selectChar(0)">
-        <svg width="90" height="115" viewBox="0 0 90 115" xmlns="http://www.w3.org/2000/svg">
-          <!-- corpo -->
-          <ellipse cx="45" cy="88" rx="28" ry="24" fill="#fff" stroke="#FFB3CC" stroke-width="1.5"/>
-          <!-- vestido rosa -->
-          <ellipse cx="45" cy="92" rx="24" ry="20" fill="#FFD6E8"/>
-          <path d="M21 88 Q45 110 69 88" fill="#FFD6E8"/>
-          <!-- cabeça -->
-          <ellipse cx="45" cy="52" rx="32" ry="30" fill="#fff" stroke="#FFB3CC" stroke-width="1.5"/>
-          <!-- orelhas -->
-          <ellipse cx="20" cy="28" rx="10" ry="12" fill="#fff" stroke="#FFB3CC" stroke-width="1.5"/>
-          <ellipse cx="70" cy="28" rx="10" ry="12" fill="#fff" stroke="#FFB3CC" stroke-width="1.5"/>
-          <ellipse cx="20" cy="28" rx="6" ry="8" fill="#FFD6E8"/>
-          <ellipse cx="70" cy="28" rx="6" ry="8" fill="#FFD6E8"/>
-          <!-- olhos -->
-          <ellipse cx="36" cy="50" rx="5" ry="6" fill="#111"/>
-          <ellipse cx="54" cy="50" rx="5" ry="6" fill="#111"/>
-          <circle cx="38" cy="48" r="2" fill="#fff"/>
-          <circle cx="56" cy="48" r="2" fill="#fff"/>
-          <!-- nariz -->
-          <ellipse cx="45" cy="59" rx="3.5" ry="2.5" fill="#FFD700"/>
-          <!-- bochechas -->
-          <ellipse cx="28" cy="60" rx="8" ry="5" fill="#FFB3CC" opacity="0.55"/>
-          <ellipse cx="62" cy="60" rx="8" ry="5" fill="#FFB3CC" opacity="0.55"/>
-          <!-- laço -->
-          <path d="M54 22 Q63 14 72 22 Q63 30 54 22Z" fill="#FF3E8A"/>
-          <path d="M72 22 Q81 14 84 22 Q81 30 72 22Z" fill="#FF3E8A"/>
-          <circle cx="72" cy="22" r="4" fill="#CC1155"/>
-          <!-- braços -->
-          <ellipse cx="18" cy="88" rx="7" ry="4" fill="#fff" stroke="#FFB3CC" stroke-width="1.2" transform="rotate(-30 18 88)"/>
-          <ellipse cx="72" cy="88" rx="7" ry="4" fill="#fff" stroke="#FFB3CC" stroke-width="1.2" transform="rotate(30 72 88)"/>
-        </svg>
-        <span>Hello Kitty</span>
-      </div>
-
-      <!-- My Melody -->
-      <div class="hero-char-card" onclick="scrollTo('dressup'); selectChar(1)">
-        <svg width="80" height="105" viewBox="0 0 80 105" xmlns="http://www.w3.org/2000/svg">
-          <!-- corpo -->
-          <ellipse cx="40" cy="84" rx="24" ry="20" fill="#fff" stroke="#FFB3CC" stroke-width="1.5"/>
-          <ellipse cx="40" cy="88" rx="20" ry="17" fill="#FFD6F0"/>
-          <!-- capuz -->
-          <ellipse cx="40" cy="46" rx="30" ry="28" fill="#FFB3D9" stroke="#FF9DC9" stroke-width="1.5"/>
-          <!-- orelhas capuz -->
-          <ellipse cx="18" cy="22" rx="10" ry="14" fill="#FFB3D9" stroke="#FF9DC9" stroke-width="1.5"/>
-          <ellipse cx="62" cy="22" rx="10" ry="14" fill="#FFB3D9" stroke="#FF9DC9" stroke-width="1.5"/>
-          <ellipse cx="18" cy="22" rx="5.5" ry="8" fill="#FF9DC9"/>
-          <ellipse cx="62" cy="22" rx="5.5" ry="8" fill="#FF9DC9"/>
-          <!-- rosto branco -->
-          <ellipse cx="40" cy="50" rx="22" ry="20" fill="#fff"/>
-          <!-- olhos -->
-          <ellipse cx="32" cy="48" rx="4" ry="5" fill="#111"/>
-          <ellipse cx="48" cy="48" rx="4" ry="5" fill="#111"/>
-          <circle cx="33.5" cy="46.5" r="1.5" fill="#fff"/>
-          <circle cx="49.5" cy="46.5" r="1.5" fill="#fff"/>
-          <!-- nariz -->
-          <ellipse cx="40" cy="55" rx="3" ry="2" fill="#FFD700"/>
-          <!-- bochechas -->
-          <ellipse cx="24" cy="57" rx="7" ry="4" fill="#FFB3CC" opacity="0.55"/>
-          <ellipse cx="56" cy="57" rx="7" ry="4" fill="#FFB3CC" opacity="0.55"/>
-        </svg>
-        <span>My Melody</span>
-      </div>
-
-      <!-- Cinnamoroll -->
-      <div class="hero-char-card" onclick="scrollTo('dressup'); selectChar(2)">
-        <svg width="85" height="110" viewBox="0 0 85 110" xmlns="http://www.w3.org/2000/svg">
-          <!-- corpo -->
-          <ellipse cx="42" cy="88" rx="26" ry="20" fill="#E8F0FF" stroke="#B5CBFF" stroke-width="1.5"/>
-          <!-- cabeça grande -->
-          <ellipse cx="42" cy="48" rx="36" ry="34" fill="#fff" stroke="#C5D9FF" stroke-width="1.5"/>
-          <!-- orelhas longas -->
-          <ellipse cx="14" cy="36" rx="10" ry="24" fill="#C5D9FF" stroke="#9AB8FF" stroke-width="1.2" transform="rotate(-15 14 36)"/>
-          <ellipse cx="70" cy="36" rx="10" ry="24" fill="#C5D9FF" stroke="#9AB8FF" stroke-width="1.2" transform="rotate(15 70 36)"/>
-          <ellipse cx="14" cy="38" rx="5" ry="16" fill="#AEC8FF" transform="rotate(-15 14 38)"/>
-          <ellipse cx="70" cy="38" rx="5" ry="16" fill="#AEC8FF" transform="rotate(15 70 38)"/>
-          <!-- olhos grandes -->
-          <ellipse cx="32" cy="46" rx="7" ry="8" fill="#111"/>
-          <ellipse cx="52" cy="46" rx="7" ry="8" fill="#111"/>
-          <circle cx="35" cy="43" r="3" fill="#fff"/>
-          <circle cx="55" cy="43" r="3" fill="#fff"/>
-          <!-- nariz -->
-          <ellipse cx="42" cy="55" rx="3.5" ry="2.5" fill="#9AB8FF"/>
-          <!-- bochechas -->
-          <ellipse cx="22" cy="58" rx="9" ry="5.5" fill="#C5D9FF" opacity="0.6"/>
-          <ellipse cx="62" cy="58" rx="9" ry="5.5" fill="#C5D9FF" opacity="0.6"/>
-          <!-- cauda/ponto no topo -->
-          <circle cx="42" cy="16" r="5" fill="#C5D9FF"/>
-        </svg>
-        <span>Cinnamoroll</span>
-      </div>
-
-      <!-- Pompompurin -->
-      <div class="hero-char-card" onclick="scrollTo('dressup'); selectChar(3)">
-        <svg width="80" height="110" viewBox="0 0 80 110" xmlns="http://www.w3.org/2000/svg">
-          <!-- corpo -->
-          <ellipse cx="40" cy="88" rx="26" ry="20" fill="#FFF9E0" stroke="#FFD700" stroke-width="1.5"/>
-          <ellipse cx="40" cy="90" rx="22" ry="17" fill="#FFE566"/>
-          <!-- cabeça -->
-          <ellipse cx="40" cy="52" rx="32" ry="30" fill="#FFE566" stroke="#FFD700" stroke-width="1.5"/>
-          <!-- boina marrom -->
-          <ellipse cx="40" cy="28" rx="24" ry="7" fill="#8B5A00"/>
-          <ellipse cx="40" cy="22" rx="18" ry="14" fill="#A06800"/>
-          <circle cx="40" cy="16" r="4" fill="#8B5A00"/>
-          <!-- orelhas caídas -->
-          <ellipse cx="12" cy="52" rx="8" ry="14" fill="#FFE566" stroke="#FFD700" stroke-width="1.2"/>
-          <ellipse cx="68" cy="52" rx="8" ry="14" fill="#FFE566" stroke="#FFD700" stroke-width="1.2"/>
-          <!-- olhos -->
-          <ellipse cx="31" cy="53" rx="5" ry="6" fill="#111"/>
-          <ellipse cx="49" cy="53" rx="5" ry="6" fill="#111"/>
-          <circle cx="33" cy="51" r="2" fill="#fff"/>
-          <circle cx="51" cy="51" r="2" fill="#fff"/>
-          <!-- nariz -->
-          <ellipse cx="40" cy="61" rx="3.5" ry="2.5" fill="#C89000"/>
-          <!-- bochechas -->
-          <ellipse cx="22" cy="63" rx="8" ry="5" fill="#FFD700" opacity="0.5"/>
-          <ellipse cx="58" cy="63" rx="8" ry="5" fill="#FFD700" opacity="0.5"/>
-        </svg>
-        <span>Pompompurin</span>
-      </div>
-    </div>
-
-    <div class="hero-cta-row">
-      <button class="cta-btn" onclick="scrollTo('dressup')">👗 Montar Look</button>
-      <button class="cta-btn secondary" onclick="scrollTo('quiz')">❓ Fazer Quiz</button>
-    </div>
+<!-- HERO -->
+<div class="hero">
+  <canvas id="bgC"></canvas>
+  <div class="scan"></div>
+  <div class="hero-content">
+    <span class="eyebrow">✦ dissolva os limites da mente ✦</span>
+    <h1 class="hero-title">
+      <span class="glitch" data-text="Entre no">Entre no</span><br>
+      <span class="glitch" data-text="Transe Profundo">Transe Profundo</span>
+    </h1>
+    <p class="hero-sub">Além do consciente existe um oceano infinito. A hipnose é o portal.</p>
+    <a class="btn-main" href="#portal">Iniciar Jornada</a>
   </div>
-</section>
+</div>
 
-<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,60 C360,0 1080,0 1440,60 L1440,60 L0,60Z" fill="#ffffff"/></svg>
-
-<!-- ══ CHARACTERS SECTION ══ -->
-<section class="section" id="characters">
-  <div class="section-inner">
-    <div class="section-title">
-      <div class="pill-label">🐱 Personagens</div>
-      <h2>Conheça o Universo Sanrio</h2>
-      <p>Cada personagem tem sua história, personalidade e mundo especial!</p>
-    </div>
-    <div class="chars-grid">
-
-      <div class="char-card">
-        <svg width="110" height="130" viewBox="0 0 110 130" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="55" cy="102" rx="30" ry="24" fill="#fff" stroke="#FFB3CC" stroke-width="1.5"/>
-          <ellipse cx="55" cy="107" rx="26" ry="20" fill="#FFD6E8"/>
-          <ellipse cx="55" cy="60" rx="36" ry="34" fill="#fff" stroke="#FFB3CC" stroke-width="1.5"/>
-          <ellipse cx="25" cy="33" rx="12" ry="14" fill="#fff" stroke="#FFB3CC" stroke-width="1.5"/>
-          <ellipse cx="85" cy="33" rx="12" ry="14" fill="#fff" stroke="#FFB3CC" stroke-width="1.5"/>
-          <ellipse cx="25" cy="33" rx="7" ry="9" fill="#FFD6E8"/>
-          <ellipse cx="85" cy="33" rx="7" ry="9" fill="#FFD6E8"/>
-          <ellipse cx="43" cy="58" rx="5.5" ry="6.5" fill="#111"/>
-          <ellipse cx="67" cy="58" rx="5.5" ry="6.5" fill="#111"/>
-          <circle cx="45.5" cy="55.5" r="2.2" fill="#fff"/>
-          <circle cx="69.5" cy="55.5" r="2.2" fill="#fff"/>
-          <ellipse cx="55" cy="67" rx="4" ry="2.8" fill="#FFD700"/>
-          <ellipse cx="36" cy="69" rx="9" ry="5.5" fill="#FFB3CC" opacity="0.55"/>
-          <ellipse cx="74" cy="69" rx="9" ry="5.5" fill="#FFB3CC" opacity="0.55"/>
-          <path d="M65 26 Q75 17 85 26 Q75 35 65 26Z" fill="#FF3E8A"/>
-          <path d="M85 26 Q95 17 98 26 Q95 35 85 26Z" fill="#FF3E8A"/>
-          <circle cx="85" cy="26" r="5" fill="#CC1155"/>
-          <ellipse cx="22" cy="104" rx="8" ry="5" fill="#fff" stroke="#FFB3CC" stroke-width="1.2" transform="rotate(-25 22 104)"/>
-          <ellipse cx="88" cy="104" rx="8" ry="5" fill="#fff" stroke="#FFB3CC" stroke-width="1.2" transform="rotate(25 88 104)"/>
-        </svg>
-        <h3>Hello Kitty</h3>
-        <p>A gatinha mais famosa do mundo! Nasceu em Londres em 1974. Adora torta de maçã e amigos. Seu laço vermelho é sua marca!</p>
-        <span class="char-tag">⭐ Ícone Sanrio</span>
-      </div>
-
-      <div class="char-card">
-        <svg width="100" height="125" viewBox="0 0 100 125" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="50" cy="100" rx="27" ry="22" fill="#fff" stroke="#FFB3CC" stroke-width="1.5"/>
-          <ellipse cx="50" cy="105" rx="23" ry="19" fill="#FFD6F0"/>
-          <ellipse cx="50" cy="57" rx="35" ry="33" fill="#FFB3D9" stroke="#FF9DC9" stroke-width="1.5"/>
-          <ellipse cx="22" cy="28" rx="13" ry="18" fill="#FFB3D9" stroke="#FF9DC9" stroke-width="1.2"/>
-          <ellipse cx="78" cy="28" rx="13" ry="18" fill="#FFB3D9" stroke="#FF9DC9" stroke-width="1.2"/>
-          <ellipse cx="22" cy="29" rx="7" ry="11" fill="#FF9DC9"/>
-          <ellipse cx="78" cy="29" rx="7" ry="11" fill="#FF9DC9"/>
-          <ellipse cx="50" cy="60" rx="26" ry="24" fill="#fff"/>
-          <ellipse cx="39" cy="57" rx="5" ry="6" fill="#111"/>
-          <ellipse cx="61" cy="57" rx="5" ry="6" fill="#111"/>
-          <circle cx="41" cy="55" r="2" fill="#fff"/>
-          <circle cx="63" cy="55" r="2" fill="#fff"/>
-          <ellipse cx="50" cy="65" rx="3.5" ry="2.5" fill="#FFD700"/>
-          <ellipse cx="30" cy="67" rx="8" ry="5" fill="#FFB3CC" opacity="0.55"/>
-          <ellipse cx="70" cy="67" rx="8" ry="5" fill="#FFB3CC" opacity="0.55"/>
-        </svg>
-        <h3>My Melody</h3>
-        <p>Coelhinha tímida da Floresta de Mariland! Sempre usa sua capinha rosa. Adora cozinhar bolachinhas com a mamãe.</p>
-        <span class="char-tag">🐰 Desde 1975</span>
-      </div>
-
-      <div class="char-card">
-        <svg width="105" height="128" viewBox="0 0 105 128" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="52" cy="104" rx="30" ry="22" fill="#E8F0FF" stroke="#B5CBFF" stroke-width="1.5"/>
-          <ellipse cx="52" cy="55" rx="40" ry="38" fill="#fff" stroke="#C5D9FF" stroke-width="1.5"/>
-          <ellipse cx="17" cy="46" rx="11" ry="28" fill="#C5D9FF" stroke="#9AB8FF" stroke-width="1.2" transform="rotate(-18 17 46)"/>
-          <ellipse cx="87" cy="46" rx="11" ry="28" fill="#C5D9FF" stroke="#9AB8FF" stroke-width="1.2" transform="rotate(18 87 46)"/>
-          <ellipse cx="17" cy="48" rx="6" ry="19" fill="#AEC8FF" transform="rotate(-18 17 48)"/>
-          <ellipse cx="87" cy="48" rx="6" ry="19" fill="#AEC8FF" transform="rotate(18 87 48)"/>
-          <ellipse cx="38" cy="54" rx="8" ry="9" fill="#111"/>
-          <ellipse cx="66" cy="54" rx="8" ry="9" fill="#111"/>
-          <circle cx="42" cy="50" r="3.5" fill="#fff"/>
-          <circle cx="70" cy="50" r="3.5" fill="#fff"/>
-          <ellipse cx="52" cy="64" rx="4" ry="3" fill="#9AB8FF"/>
-          <ellipse cx="28" cy="67" rx="10" ry="6" fill="#C5D9FF" opacity="0.6"/>
-          <ellipse cx="76" cy="67" rx="10" ry="6" fill="#C5D9FF" opacity="0.6"/>
-          <circle cx="52" cy="20" r="6" fill="#C5D9FF" stroke="#9AB8FF" stroke-width="1.2"/>
-        </svg>
-        <h3>Cinnamoroll</h3>
-        <p>Cachorrinho nuvem que mora num café! Ganhou o prêmio Sanrio em 2002. Suas orelhas são tão grandes que ele consegue voar!</p>
-        <span class="char-tag">☁️ Desde 2001</span>
-      </div>
-
-      <div class="char-card">
-        <svg width="100" height="125" viewBox="0 0 100 125" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="50" cy="100" rx="30" ry="22" fill="#FFF9E0" stroke="#FFD700" stroke-width="1.5"/>
-          <ellipse cx="50" cy="105" rx="26" ry="19" fill="#FFE566"/>
-          <ellipse cx="50" cy="62" rx="36" ry="34" fill="#FFE566" stroke="#FFD700" stroke-width="1.5"/>
-          <ellipse cx="50" cy="36" rx="28" ry="8" fill="#7A4800"/>
-          <ellipse cx="50" cy="28" rx="22" ry="16" fill="#A06000"/>
-          <circle cx="50" cy="15" r="5" fill="#7A4800"/>
-          <ellipse cx="14" cy="64" rx="9" ry="17" fill="#FFE566" stroke="#FFD700" stroke-width="1.2"/>
-          <ellipse cx="86" cy="64" rx="9" ry="17" fill="#FFE566" stroke="#FFD700" stroke-width="1.2"/>
-          <ellipse cx="37" cy="63" rx="6" ry="7" fill="#111"/>
-          <ellipse cx="63" cy="63" rx="6" ry="7" fill="#111"/>
-          <circle cx="39.5" cy="60.5" r="2.5" fill="#fff"/>
-          <circle cx="65.5" cy="60.5" r="2.5" fill="#fff"/>
-          <ellipse cx="50" cy="72" rx="4" ry="2.8" fill="#C89000"/>
-          <ellipse cx="30" cy="74" rx="9" ry="5.5" fill="#FFD700" opacity="0.5"/>
-          <ellipse cx="70" cy="74" rx="9" ry="5.5" fill="#FFD700" opacity="0.5"/>
-        </svg>
-        <h3>Pompompurin</h3>
-        <p>Cachorrinho golden retriever que ADORA pudim! Usa sua boina marrom mesmo dormindo. Nasceu em Tóquio em 1996.</p>
-        <span class="char-tag">🍮 Desde 1996</span>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="transform:scaleY(-1); background:#fff"><path d="M0,60 C360,0 1080,0 1440,60 L1440,60 L0,60Z" fill="#FFF0F5"/></svg>
-
-<!-- ══ DRESS UP ══ -->
-<section class="section" id="dressup">
-  <div class="section-inner">
-    <div class="section-title">
-      <div class="pill-label">👗 Dress Up</div>
-      <h2>Monte o look perfeito!</h2>
-      <p>Escolha o personagem e vá trocando roupas, acessórios e mais!</p>
-    </div>
-
-    <div class="dressup-layout">
-      <!-- Wardrobe Left -->
-      <div class="wardrobe-col">
-        <div class="wb-panel">
-          <div class="wb-head">🎀 Cabeça</div>
-          <div class="wb-grid" id="headGrid"></div>
-        </div>
-        <div class="wb-panel">
-          <div class="wb-head">👗 Roupa</div>
-          <div class="wb-grid" id="outfitGrid"></div>
+<!-- O QUE É HIPNOSE -->
+<section id="oque">
+  <div class="inner">
+    <div class="what-grid">
+      <div>
+        <span class="slabel">✦ fundamentos</span>
+        <h2 class="stitle">O que é hipnose?</h2>
+        <p class="sbody">Hipnose é um estado alterado de consciência — natural, seguro e poderoso. Não é sono, não é magia. É a mente acessando camadas mais profundas de si mesma, onde padrões são reescritos e percepções se expandem.</p>
+        <p class="sbody" style="margin-top:1rem">Nesse estado, as ondas cerebrais transitam entre Alpha e Theta — o mesmo território da meditação profunda, criatividade e dos sonhos lúcidos.</p>
+        <div class="fact-grid">
+          <div class="fact-item">Estado natural</div>
+          <div class="fact-item">Ondas Theta/Alpha</div>
+          <div class="fact-item">Atenção focada</div>
+          <div class="fact-item">Base científica</div>
+          <div class="fact-item">Sem perda de controle</div>
+          <div class="fact-item">Acesso ao subconsciente</div>
         </div>
       </div>
-
-      <!-- Stage Center -->
-      <div class="stage-box">
-        <canvas id="stageCanvas" width="200" height="240"></canvas>
-        <div class="char-switcher">
-          <button class="char-sw-btn active" onclick="selectChar(0)">Hello Kitty</button>
-          <button class="char-sw-btn" onclick="selectChar(1)">My Melody</button>
-          <button class="char-sw-btn" onclick="selectChar(2)">Cinnamoroll</button>
-          <button class="char-sw-btn" onclick="selectChar(3)">Pompompurin</button>
-        </div>
-      </div>
-
-      <!-- Wardrobe Right -->
-      <div class="wardrobe-col">
-        <div class="wb-panel">
-          <div class="wb-head">✨ Acessórios</div>
-          <div class="wb-grid" id="accessGrid"></div>
-        </div>
-        <div class="wb-panel">
-          <div class="wb-head">🌈 Cores</div>
-          <div class="wb-grid" id="colorGrid"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="fun-strip" id="funStrip">💡 Hello Kitty não tem boca — ela fala com o coração! ❤️</div>
-  </div>
-</section>
-
-<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="background:#FFF0F5"><path d="M0,60 C360,0 1080,0 1440,60 L1440,60 L0,60Z" fill="#ffffff"/></svg>
-
-<!-- ══ QUIZ ══ -->
-<section class="section" id="quiz">
-  <div class="section-inner">
-    <div class="section-title">
-      <div class="pill-label">❓ Quiz</div>
-      <h2>Você é expert em Sanrio?</h2>
-      <p>10 perguntas para testar o seu conhecimento sobre o universo Hello Kitty!</p>
-    </div>
-
-    <div class="quiz-layout">
-      <div id="quizGame">
-        <div class="quiz-topbar">
-          <span class="q-num" id="qNum">1/10</span>
-          <div class="prog-track"><div class="prog-fill" id="progFill" style="width:10%"></div></div>
-          <div class="score-pill">⭐ <span id="scorePill">0</span></div>
-        </div>
-
-        <div class="quiz-card">
-          <div class="quiz-question-row">
-            <div class="quiz-kitty">
-              <canvas id="quizKitty" width="80" height="100"></canvas>
-            </div>
-            <div class="speech-bubble">
-              <div class="q-cat" id="qCat">Personagens</div>
-              <div class="q-text" id="qText">Carregando pergunta...</div>
-            </div>
-          </div>
-          <div class="answers-grid" id="answersGrid"></div>
-          <div class="feedback-box" id="feedbackBox"></div>
-        </div>
-
-        <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Próxima pergunta →</button>
-      </div>
-
-      <!-- Result -->
-      <div class="result-screen" id="quizResult">
-        <div class="result-card">
-          <div class="res-stars" id="resStars">⭐⭐⭐</div>
-          <div class="res-title" id="resTitle">Incrível!</div>
-          <div class="res-score">Você acertou <b id="resFinal">0</b> de 10 perguntas</div>
-          <div class="res-msg" id="resMsg"></div>
-          <canvas id="resChar" width="130" height="160" class="res-char"></canvas>
-          <button class="restart-btn" onclick="restartQuiz()">🔄 Jogar de Novo!</button>
-        </div>
+      <div class="what-visual">
+        <canvas id="whatC" width="380" height="380"></canvas>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ FOOTER ══ -->
+<!-- COMO FUNCIONA -->
+<section class="how-bg" id="como">
+  <div class="inner">
+    <span class="slabel">✦ o processo</span>
+    <h2 class="stitle">Como funciona</h2>
+    <div class="steps-wrap">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <canvas id="si1" width="48" height="48"></canvas>
+        <h3>Indução</h3>
+        <p>Respiração, relaxamento e foco atencional conduzem a mente ao estado receptivo.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <canvas id="si2" width="48" height="48"></canvas>
+        <h3>Aprofundamento</h3>
+        <p>Sugestões progressivas ampliam o estado e dissolvem a resistência crítica.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <canvas id="si3" width="48" height="48"></canvas>
+        <h3>Sugestão</h3>
+        <p>Mensagens acessam o subconsciente, semeando novos padrões e percepções.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <canvas id="si4" width="48" height="48"></canvas>
+        <h3>Emergência</h3>
+        <p>Retorno gradual integrando as transformações ao estado de vigília plena.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIPOS DE HIPNOSE -->
+<section class="types-bg" id="tipos">
+  <div class="inner">
+    <span class="slabel">✦ modalidades</span>
+    <h2 class="stitle">Os tipos de hipnose</h2>
+    <p class="sbody">Cada abordagem abre um portal diferente para a mente. Clique para explorar.</p>
+    <div class="types-grid" id="tGrid"></div>
+  </div>
+</section>
+
+<!-- PORTAL DE TRANSE -->
+<section class="portal-section" id="portal">
+  <div class="inner">
+    <span class="slabel">✦ portal de transe</span>
+    <h2 class="stitle">Visualização Hipnótica</h2>
+    <p class="sbody" style="max-width:480px;margin:0 auto">Escolha uma forma. Fixe o centro. Respire fundo e deixe a mente fluir.</p>
+    <div class="portal-controls">
+      <button class="pbtn active" data-p="arch">Arco-íris Espiral</button>
+      <button class="pbtn" data-p="flower">Flor da Vida</button>
+      <button class="pbtn" data-p="dna">Dupla Hélice</button>
+      <button class="pbtn" data-p="eye">Olho do Infinito</button>
+      <button class="pbtn" data-p="fractal">Fractal Hipnótico</button>
+      <button class="pbtn" data-p="aurora">Aurora Mental</button>
+    </div>
+    <div class="portal-wrap">
+      <div class="portal-glow" id="pGlow"></div>
+      <canvas id="mainPortal" width="440" height="440"></canvas>
+    </div>
+    <div class="speed-row">
+      <label for="spd">VELOCIDADE</label>
+      <input type="range" id="spd" min="1" max="12" value="5" step="1">
+      <label id="spdv">5</label>
+    </div>
+    <span class="hint">✦ fixe o centro · respire fundo · deixe a mente fluir ✦</span>
+  </div>
+</section>
+
 <footer>
-  <div class="footer-logo">🎀</div>
-  <p>Hello Kitty World — feito com muito amor e carinho 💕</p>
-  <p style="margin-top:6px; opacity:0.7; font-size:12px;">Hello Kitty é marca registrada da Sanrio Co., Ltd. Este site é um fan-project educativo.</p>
+  <p>© 2025 HYPNOS · Transformação através da consciência</p>
 </footer>
 
 <script>
-// ── FLOATING BG ──
-(function(){
-  const cont = document.getElementById('bgFloats');
-  const icons = ['🎀','♥','⭐','🌸','✨','🍭','🎈','🌷'];
-  for(let i=0;i<22;i++){
-    const s = document.createElement('span');
-    s.textContent = icons[i%icons.length];
-    s.style.left = Math.random()*100+'%';
-    s.style.bottom = '-30px';
-    s.style.animationDuration = (6+Math.random()*10)+'s';
-    s.style.animationDelay = (Math.random()*10)+'s';
-    s.style.fontSize = (12+Math.random()*18)+'px';
-    cont.appendChild(s);
+// ── HELPER: interpolate color ─────────────────────────────────────────────────
+function iColor(c1, c2, t, a) {
+  function expand(h) { return h.length === 4 ? '#' + h.slice(1).split('').map(x => x + x).join('') : h; }
+  const h1 = expand(c1), h2 = expand(c2);
+  const r = Math.round(parseInt(h1.slice(1,3),16)*(1-t) + parseInt(h2.slice(1,3),16)*t);
+  const g = Math.round(parseInt(h1.slice(3,5),16)*(1-t) + parseInt(h2.slice(3,5),16)*t);
+  const b = Math.round(parseInt(h1.slice(5,7),16)*(1-t) + parseInt(h2.slice(5,7),16)*t);
+  return `rgba(${r},${g},${b},${a})`;
+}
+
+// ── PARTICLES ─────────────────────────────────────────────────────────────────
+(function() {
+  const c = document.getElementById('pCanvas'), ctx = c.getContext('2d');
+  let W, H, pts = [];
+  function resize() { W = c.width = window.innerWidth; H = c.height = window.innerHeight; }
+  resize(); window.addEventListener('resize', resize);
+  for (let i = 0; i < 100; i++) pts.push({ x: Math.random()*9999, y: Math.random()*9999, vx: (Math.random()-.5)*.25, vy: (Math.random()-.5)*.25, s: Math.random()*1.4+.3, h: Math.random()*360, l: Math.random()*100 });
+  function draw() {
+    ctx.clearRect(0,0,W,H);
+    pts.forEach(p => {
+      p.x += p.vx; p.y += p.vy; p.l += .002; p.h += .4;
+      if (p.x < 0 || p.x > W) p.vx *= -1;
+      if (p.y < 0 || p.y > H) p.vy *= -1;
+      ctx.beginPath(); ctx.arc(p.x % W, p.y % H, p.s, 0, Math.PI*2);
+      ctx.fillStyle = `hsla(${p.h%360},100%,70%,${.3+Math.sin(p.l)*.2})`; ctx.fill();
+    });
+    requestAnimationFrame(draw);
   }
+  draw();
 })();
 
-// ── SMOOTH SCROLL ──
-function scrollTo(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
-
-// ── CHARACTER DATA ──
-const CHARS = [
-  { name:'Hello Kitty', hc:'#fff', ec:'#FFD6E8', bc:'#fff', sc:'#FFB3CC', nc:'#FFD700', cc:'#FFB3CC', bow:true, bowColor:'#FF3E8A' },
-  { name:'My Melody',   hc:'#FFB3D9', ec:'#FF9DC9', bc:'#fff', sc:'#FFB3CC', nc:'#FFD700', cc:'#FFB3CC', hood:true },
-  { name:'Cinnamoroll', hc:'#fff', ec:'#C5D9FF', bc:'#E8F0FF', sc:'#C5D9FF', nc:'#9AB8FF', cc:'#C5D9FF', flopEar:true },
-  { name:'Pompompurin', hc:'#FFE566', ec:'#FFE566', bc:'#FFF9E0', sc:'#FFD700', nc:'#C89000', cc:'#FFD700', beret:true },
-];
-
-const HEAD_ITEMS = [
-  {id:null, e:'✕', l:'Nenhum'}, {id:'crown',e:'👑',l:'Coroa'},
-  {id:'bow_big',e:'🎀',l:'Laço'}, {id:'flower',e:'🌸',l:'Flor'},
-  {id:'star',e:'⭐',l:'Estrela'}, {id:'hat',e:'🎩',l:'Chapéu'},
-  {id:'tiara',e:'💎',l:'Tiara'}, {id:'moon',e:'🌙',l:'Lua'},
-  {id:'ribbon',e:'🎗️',l:'Fita'}
-];
-const OUTFIT_ITEMS = [
-  {id:null,e:'✕',l:'Nenhum'}, {id:'pink',e:'🌸',l:'Rosa'},
-  {id:'blue',e:'💙',l:'Azul'}, {id:'overall',e:'👖',l:'Jardineira'},
-  {id:'kimono',e:'🎌',l:'Kimono'}, {id:'space',e:'🚀',l:'Espaço'},
-  {id:'candy',e:'🍭',l:'Doces'}, {id:'rainbow',e:'🌈',l:'Arco-íris'},
-  {id:'hearts',e:'❤️',l:'Corações'}
-];
-const ACCESS_ITEMS = [
-  {id:null,e:'✕',l:'Nenhum'}, {id:'wand',e:'🪄',l:'Varinha'},
-  {id:'balloon',e:'🎈',l:'Balão'}, {id:'bag',e:'👜',l:'Bolsinha'},
-  {id:'icecream',e:'🍦',l:'Sorvete'}, {id:'flower',e:'🌷',l:'Flor'},
-  {id:'stars',e:'✨',l:'Estrelas'}, {id:'cake',e:'🎂',l:'Bolo'},
-  {id:'music',e:'🎵',l:'Música'}
-];
-const COLOR_ITEMS = [
-  {id:'default',e:'🤍',l:'Padrão'}, {id:'pink_dark',e:'🩷',l:'Rosa Forte'},
-  {id:'lavender',e:'💜',l:'Lilás'}, {id:'mint',e:'💚',l:'Verde'},
-  {id:'sky',e:'💙',l:'Azul Céu'}, {id:'peach',e:'🍑',l:'Pêssego'},
-  {id:'gold',e:'✨',l:'Dourado'}, {id:'coral',e:'🧡',l:'Coral'},
-  {id:'white',e:'🤍',l:'Branco'}
-];
-
-const OUTFIT_COLORS = {
-  pink:'#FFB3CC', blue:'#B3C6FF', overall:'#88BBDD',
-  kimono:'#D4AAFF', space:'#1A1A50', candy:'#FFB3E0',
-  rainbow:'#FFB3B3', hearts:'#FF6B9D'
-};
-const TINT_COLORS = {
-  default:null, pink_dark:'#FF6BAD', lavender:'#D4AAFF',
-  mint:'#AADDBB', sky:'#99CCFF', peach:'#FFCCAA',
-  gold:'#FFE066', coral:'#FF9977', white:'#FFFFFF'
-};
-
-const FUN_FACTS = [
-  '💡 Hello Kitty não tem boca — ela fala com o coração!',
-  '💡 My Melody tem uma capa vermelha OU rosa dependendo da estação!',
-  '💡 Cinnamoroll ganhou o prêmio de personagem favorito da Sanrio em 2002!',
-  '💡 Pompompurin adora dormir e comer pudim — suas duas paixões!',
-  '💡 Hello Kitty nasceu em Londres no dia 1 de novembro de 1974!',
-  '💡 A Sanrio foi fundada em 1960 no Japão por Shintaro Tsuji!',
-  '💡 Hello Kitty tem um gato de estimação chamado Charmmy Kitty!',
-  '💡 Cinnamoroll mora em um café no alto das nuvens!',
-  '💡 My Melody é filha de um fazendeiro de cogumelos!',
-];
-
-const state = { char:0, head:null, outfit:null, access:null, color:'default', factIdx:0 };
-
-// ── DRAW CHARACTER ──
-function drawCharacter(ctx, charIdx, cx, cy, sc, headItem, outfitItem, accItem, colorTint) {
-  const c = CHARS[charIdx];
-  ctx.save();
-  ctx.translate(cx, cy);
-  ctx.scale(sc, sc);
-
-  const bodyColor = outfitItem && OUTFIT_COLORS[outfitItem] ? OUTFIT_COLORS[outfitItem] : c.bc;
-  const headColor = colorTint && TINT_COLORS[colorTint] ? mixColor(c.hc, TINT_COLORS[colorTint], 0.3) : c.hc;
-
-  // Shadow
-  ctx.fillStyle = 'rgba(255,100,150,0.12)';
-  ctx.beginPath(); ctx.ellipse(0, 90, 35, 10, 0, 0, Math.PI*2); ctx.fill();
-
-  // Body
-  ctx.fillStyle = bodyColor;
-  ctx.strokeStyle = c.sc; ctx.lineWidth = 1.8;
-  ctx.beginPath(); ctx.ellipse(0, 65, 32, 28, 0, 0, Math.PI*2); ctx.fill(); ctx.stroke();
-
-  // Outfit decorations
-  if (outfitItem === 'kimono') {
-    ctx.fillStyle = '#D4AAFF';
-    ctx.beginPath(); ctx.moveTo(-18,42); ctx.lineTo(18,42); ctx.lineTo(22,90); ctx.lineTo(-22,90); ctx.closePath(); ctx.fill();
-    ctx.strokeStyle='#AA77FF'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(0,42); ctx.lineTo(0,90); ctx.stroke();
-    ctx.strokeStyle='#AA77FF'; ctx.lineWidth=0.8;
-    ctx.beginPath(); ctx.moveTo(-10,50); ctx.lineTo(10,50); ctx.stroke();
-  } else if (outfitItem === 'space') {
-    ctx.fillStyle = '#1A1A50';
-    ctx.beginPath(); ctx.ellipse(0,68,28,24,0,0,Math.PI*2); ctx.fill();
-    ctx.fillStyle='#6688CC'; ctx.font='11px serif';
-    ctx.textAlign='center'; ctx.fillText('★',-14,58); ctx.fillText('★',10,70); ctx.fillText('★',-8,82);
-  } else if (outfitItem === 'rainbow') {
-    const cols = ['#FF6B9D','#FF9D3D','#FFD700','#5BC85B','#5B9DFF'];
-    for(let i=0;i<5;i++){
-      ctx.fillStyle=cols[i];
-      ctx.beginPath(); ctx.rect(-26,44+i*10,52,10); ctx.fill();
+// ── HERO BACKGROUND ───────────────────────────────────────────────────────────
+(function() {
+  const c = document.getElementById('bgC'), ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize() { W = c.width = window.innerWidth; H = c.height = window.innerHeight; }
+  resize(); window.addEventListener('resize', resize);
+  function draw() {
+    ctx.fillStyle = 'rgba(0,0,0,0.1)'; ctx.fillRect(0,0,W,H);
+    const cx = W/2, cy = H/2;
+    // 3-arm rainbow spiral
+    for (let arm = 0; arm < 3; arm++) {
+      const off = arm * (Math.PI*2/3);
+      for (let i = 0; i < 600; i++) {
+        const a = i*.065 + t + off, r = i*.6;
+        const x = cx + r*Math.cos(a), y = cy + r*Math.sin(a);
+        if (x<0||x>W||y<0||y>H) continue;
+        const hue = (i*.5 + arm*120 + t*35) % 360;
+        const alpha = (1 - i/600) * .55;
+        ctx.beginPath(); ctx.arc(x,y,1.2,0,Math.PI*2);
+        ctx.fillStyle = `hsla(${hue},100%,65%,${alpha})`; ctx.fill();
+      }
     }
-  } else if (outfitItem === 'overall') {
-    ctx.fillStyle='#5599CC';
-    ctx.beginPath(); ctx.rect(-20,40,40,52); ctx.fill();
-    ctx.fillStyle='#77AADD';
-    ctx.beginPath(); ctx.rect(-14,34,28,16); ctx.fill();
-    ctx.strokeStyle='#5599CC'; ctx.lineWidth=5;
-    ctx.beginPath(); ctx.moveTo(-8,34); ctx.lineTo(-8,40); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(8,34); ctx.lineTo(8,40); ctx.stroke();
-  } else if (outfitItem === 'hearts') {
-    ctx.fillStyle='#FF4466';
-    ctx.font='13px serif'; ctx.textAlign='center';
-    ctx.fillText('♥',-12,55); ctx.fillText('♥',12,67); ctx.fillText('♥',-8,79);
-  } else if (outfitItem === 'candy') {
-    ctx.font='14px serif'; ctx.textAlign='center';
-    ctx.fillText('🍬',-12,55); ctx.fillText('🍭',10,68); ctx.fillText('🍬',-12,81);
-  } else if (outfitItem === 'pink' || outfitItem === 'blue') {
-    ctx.fillStyle = outfitItem==='pink'?'#FF80AA':'#6699FF';
-    ctx.beginPath(); ctx.moveTo(-16,46); ctx.lineTo(16,46); ctx.lineTo(24,90); ctx.lineTo(-24,90); ctx.closePath(); ctx.fill();
-    ctx.fillStyle='#fff';
-    ctx.beginPath(); ctx.moveTo(-10,38); ctx.lineTo(10,38); ctx.lineTo(6,50); ctx.lineTo(-6,50); ctx.closePath(); ctx.fill();
-  }
-
-  // Arms
-  ctx.fillStyle = headColor || c.hc;
-  ctx.strokeStyle = c.sc; ctx.lineWidth = 1.5;
-  ctx.beginPath(); ctx.ellipse(-34,62,9,5,0.5,0,Math.PI*2); ctx.fill(); ctx.stroke();
-  ctx.beginPath(); ctx.ellipse(34,62,9,5,-0.5,0,Math.PI*2); ctx.fill(); ctx.stroke();
-
-  // Head - character specific
-  ctx.strokeStyle = c.sc; ctx.lineWidth = 1.8;
-  if (charIdx === 2) { // Cinnamoroll
-    ctx.fillStyle = '#fff';
-    ctx.beginPath(); ctx.ellipse(0,-25,38,36,0,0,Math.PI*2); ctx.fill(); ctx.stroke();
-    // Floppy ears
-    ctx.fillStyle=c.ec;
-    ctx.beginPath(); ctx.ellipse(-30,-18,12,28,-0.3,0,Math.PI*2); ctx.fill(); ctx.stroke();
-    ctx.beginPath(); ctx.ellipse(30,-18,12,28,0.3,0,Math.PI*2); ctx.fill(); ctx.stroke();
-    ctx.fillStyle='#AEC8FF';
-    ctx.beginPath(); ctx.ellipse(-30,-18,7,20,-0.3,0,Math.PI*2); ctx.fill();
-    ctx.beginPath(); ctx.ellipse(30,-18,7,20,0.3,0,Math.PI*2); ctx.fill();
-    // dot on top
-    ctx.fillStyle=c.ec;
-    ctx.beginPath(); ctx.arc(0,-60,7,0,Math.PI*2); ctx.fill(); ctx.stroke();
-  } else if (charIdx === 1) { // My Melody
-    ctx.fillStyle=c.hc;
-    ctx.beginPath(); ctx.ellipse(0,-22,34,32,0,0,Math.PI*2); ctx.fill(); ctx.stroke();
-    ctx.fillStyle=c.ec;
-    ctx.beginPath(); ctx.ellipse(-22,-50,14,18,-0.2,0,Math.PI*2); ctx.fill(); ctx.stroke();
-    ctx.beginPath(); ctx.ellipse(22,-50,14,18,0.2,0,Math.PI*2); ctx.fill(); ctx.stroke();
-    ctx.fillStyle='#FF9DC9';
-    ctx.beginPath(); ctx.ellipse(-22,-50,8,12,-0.2,0,Math.PI*2); ctx.fill();
-    ctx.beginPath(); ctx.ellipse(22,-50,8,12,0.2,0,Math.PI*2); ctx.fill();
-    ctx.fillStyle='#fff';
-    ctx.beginPath(); ctx.ellipse(0,-24,26,24,0,0,Math.PI*2); ctx.fill();
-  } else {
-    // HK / Pompompurin
-    ctx.fillStyle = headColor || c.hc;
-    ctx.beginPath(); ctx.ellipse(0,-22,34,32,0,0,Math.PI*2); ctx.fill(); ctx.stroke();
-    // Ears
-    ctx.beginPath(); ctx.ellipse(-24,-52,13,15,-0.25,0,Math.PI*2); ctx.fill(); ctx.stroke();
-    ctx.beginPath(); ctx.ellipse(24,-52,13,15,0.25,0,Math.PI*2); ctx.fill(); ctx.stroke();
-    ctx.fillStyle = c.ec;
-    ctx.beginPath(); ctx.ellipse(-24,-52,8,10,-0.25,0,Math.PI*2); ctx.fill();
-    ctx.beginPath(); ctx.ellipse(24,-52,8,10,0.25,0,Math.PI*2); ctx.fill();
-    // Pompompurin beret (if no head item)
-    if (charIdx===3 && !headItem) {
-      ctx.fillStyle='#7A4800';
-      ctx.beginPath(); ctx.ellipse(0,-50,26,8,0,0,Math.PI*2); ctx.fill();
-      ctx.fillStyle='#A06000';
-      ctx.beginPath(); ctx.ellipse(0,-58,18,14,0,0,Math.PI*2); ctx.fill();
-      ctx.fillStyle='#7A4800';
-      ctx.beginPath(); ctx.arc(0,-68,5,0,Math.PI*2); ctx.fill();
+    // plasma rings
+    for (let r = 0; r < 7; r++) {
+      const radius = 80 + r*70 + Math.sin(t+r)*30;
+      ctx.beginPath();
+      for (let i = 0; i <= 120; i++) {
+        const a = (i/120)*Math.PI*2;
+        const w = Math.sin(a*5 + t*2 + r)*20;
+        const px = cx + (radius+w)*Math.cos(a), py = cy + (radius+w)*Math.sin(a);
+        i===0 ? ctx.moveTo(px,py) : ctx.lineTo(px,py);
+      }
+      ctx.closePath();
+      ctx.strokeStyle = `hsla(${(r*45+t*25)%360},100%,60%,.05)`; ctx.lineWidth = 1.5; ctx.stroke();
     }
+    t += .01; requestAnimationFrame(draw);
   }
+  draw();
+})();
 
-  // Eyes
-  const eyeY = charIdx===1? -26 : charIdx===2? -28 : -24;
-  ctx.fillStyle = '#111';
-  ctx.beginPath(); ctx.ellipse(-12, eyeY, 5.5, 6.5, 0, 0, Math.PI*2); ctx.fill();
-  ctx.beginPath(); ctx.ellipse(12, eyeY, 5.5, 6.5, 0, 0, Math.PI*2); ctx.fill();
-  ctx.fillStyle='#fff';
-  ctx.beginPath(); ctx.arc(-10, eyeY-2.5, 2.2, 0, Math.PI*2); ctx.fill();
-  ctx.beginPath(); ctx.arc(14, eyeY-2.5, 2.2, 0, Math.PI*2); ctx.fill();
-
-  // Nose
-  ctx.fillStyle = c.nc;
-  ctx.beginPath(); ctx.ellipse(0, eyeY+9, 4, 2.8, 0, 0, Math.PI*2); ctx.fill();
-
-  // Cheeks
-  ctx.fillStyle = c.cc; ctx.globalAlpha=0.5;
-  ctx.beginPath(); ctx.ellipse(-18, eyeY+12, 9, 5.5, 0, 0, Math.PI*2); ctx.fill();
-  ctx.beginPath(); ctx.ellipse(18, eyeY+12, 9, 5.5, 0, 0, Math.PI*2); ctx.fill();
-  ctx.globalAlpha=1;
-
-  // HK default bow
-  if (charIdx===0 && c.bow && !headItem) {
-    ctx.fillStyle=c.bowColor;
-    ctx.beginPath(); ctx.moveTo(14,-54); ctx.quadraticCurveTo(24,-64,34,-54); ctx.quadraticCurveTo(24,-44,14,-54); ctx.fill();
-    ctx.beginPath(); ctx.moveTo(34,-54); ctx.quadraticCurveTo(44,-64,48,-54); ctx.quadraticCurveTo(44,-44,34,-54); ctx.fill();
-    ctx.fillStyle='#CC1155';
-    ctx.beginPath(); ctx.arc(34,-54,4.5,0,Math.PI*2); ctx.fill();
-  }
-
-  // HEAD ITEM
-  if (headItem) {
-    const hy = charIdx===2 ? -68 : -70;
-    ctx.textAlign='center';
-    if (headItem==='crown') {
-      ctx.fillStyle='#FFD700';
-      ctx.beginPath(); ctx.moveTo(-18,hy+16); ctx.lineTo(-18,hy+4); ctx.lineTo(-8,hy-6); ctx.lineTo(0,hy-14); ctx.lineTo(8,hy-6); ctx.lineTo(18,hy+4); ctx.lineTo(18,hy+16); ctx.closePath(); ctx.fill();
-      ctx.strokeStyle='#C8A000'; ctx.lineWidth=1.5; ctx.stroke();
-      ctx.fillStyle='#FF4466'; ctx.beginPath(); ctx.arc(0,hy-8,3.5,0,Math.PI*2); ctx.fill();
-      ctx.fillStyle='#FF4466'; ctx.beginPath(); ctx.arc(-16,hy+6,2.5,0,Math.PI*2); ctx.fill();
-      ctx.fillStyle='#FF4466'; ctx.beginPath(); ctx.arc(16,hy+6,2.5,0,Math.PI*2); ctx.fill();
-    } else if (headItem==='bow_big') {
-      ctx.fillStyle='#FF3E8A';
-      ctx.beginPath(); ctx.moveTo(-4,hy+8); ctx.quadraticCurveTo(-18,hy-6,-30,hy+8); ctx.quadraticCurveTo(-18,hy+22,-4,hy+8); ctx.fill();
-      ctx.beginPath(); ctx.moveTo(4,hy+8); ctx.quadraticCurveTo(18,hy-6,30,hy+8); ctx.quadraticCurveTo(18,hy+22,4,hy+8); ctx.fill();
-      ctx.fillStyle='#CC1155'; ctx.beginPath(); ctx.arc(0,hy+8,7,0,Math.PI*2); ctx.fill();
-    } else if (headItem==='flower') {
-      ctx.font='28px serif'; ctx.fillText('🌸',0,hy+16);
-    } else if (headItem==='star') {
-      ctx.font='26px serif'; ctx.fillText('⭐',0,hy+16);
-    } else if (headItem==='hat') {
-      ctx.fillStyle='#222';
-      ctx.beginPath(); ctx.ellipse(0,hy+16,24,7,0,0,Math.PI*2); ctx.fill();
-      ctx.beginPath(); ctx.moveTo(-14,hy+16); ctx.lineTo(-9,hy-12); ctx.lineTo(9,hy-12); ctx.lineTo(14,hy+16); ctx.closePath(); ctx.fill();
-      ctx.fillStyle='#FF6B9D'; ctx.fillRect(-14,hy+8,28,6);
-    } else if (headItem==='tiara') {
-      ctx.fillStyle='#FFD700';
-      ctx.beginPath(); ctx.moveTo(-22,hy+16); ctx.lineTo(-22,hy+6); ctx.lineTo(-12,hy); ctx.lineTo(0,hy-8); ctx.lineTo(12,hy); ctx.lineTo(22,hy+6); ctx.lineTo(22,hy+16); ctx.closePath(); ctx.fill();
-      ctx.strokeStyle='#C8A000'; ctx.lineWidth=1; ctx.stroke();
-      ctx.fillStyle='#9966FF'; ctx.beginPath(); ctx.arc(0,hy,5,0,Math.PI*2); ctx.fill();
-    } else if (headItem==='moon') {
-      ctx.font='26px serif'; ctx.fillText('🌙',0,hy+16);
-    } else if (headItem==='ribbon') {
-      ctx.font='26px serif'; ctx.fillText('🎗️',0,hy+16);
+// ── WHAT CANVAS (plasma orb) ──────────────────────────────────────────────────
+(function() {
+  const c = document.getElementById('whatC'), ctx = c.getContext('2d');
+  let t = 0;
+  function draw() {
+    ctx.fillStyle = 'rgba(0,0,0,0.12)'; ctx.fillRect(0,0,380,380);
+    const cx = 190, cy = 190;
+    for (let ring = 0; ring < 14; ring++) {
+      ctx.beginPath();
+      for (let i = 0; i <= 100; i++) {
+        const a = (i/100)*Math.PI*2;
+        const n = Math.sin(a*6 + t*2 + ring*.8)*18 + Math.sin(a*4 - t + ring)*10;
+        const r = 25 + ring*11 + n;
+        const px = cx + r*Math.cos(a), py = cy + r*Math.sin(a);
+        i===0 ? ctx.moveTo(px,py) : ctx.lineTo(px,py);
+      }
+      ctx.closePath();
+      const hue = (ring*24 + t*30) % 360;
+      ctx.strokeStyle = `hsla(${hue},100%,65%,${.55-ring*.03})`; ctx.lineWidth = 1; ctx.stroke();
     }
+    const g = ctx.createRadialGradient(cx,cy,0,cx,cy,55);
+    g.addColorStop(0, `hsla(${(t*45)%360},100%,80%,.7)`); g.addColorStop(1,'transparent');
+    ctx.beginPath(); ctx.arc(cx,cy,55,0,Math.PI*2); ctx.fillStyle = g; ctx.fill();
+    t += .02; requestAnimationFrame(draw);
   }
+  draw();
+})();
 
-  // ACCESSORY held
-  if (accItem) {
-    const em = {wand:'🪄',balloon:'🎈',bag:'👜',icecream:'🍦',flower:'🌷',stars:'✨',cake:'🎂',music:'🎵'};
-    if (em[accItem]) {
-      ctx.font='26px serif'; ctx.textAlign='center';
-      ctx.fillText(em[accItem], 48, 30);
+// ── STEP ICONS ────────────────────────────────────────────────────────────────
+[['si1','#ff00ff','#00ffff'],['si2','#00ffff','#00ff88'],['si3','#ff8800','#ffff00'],['si4','#8800ff','#ff00ff']].forEach(([id,c1,c2]) => {
+  const c = document.getElementById(id); if (!c) return;
+  const ctx = c.getContext('2d'); let t = Math.random()*50;
+  function draw() {
+    ctx.clearRect(0,0,48,48);
+    for (let j = 0; j < 70; j++) {
+      const a = j*.11 + t, r = j*.32;
+      const x = 24 + r*Math.cos(a), y = 24 + r*Math.sin(a);
+      ctx.beginPath(); ctx.arc(x,y,.9,0,Math.PI*2);
+      ctx.fillStyle = iColor(c1, c2, j/70, (1-j/70)*.9); ctx.fill();
     }
+    t += .06; requestAnimationFrame(draw);
   }
-
-  ctx.restore();
-}
-
-function mixColor(hex1, hex2, t) {
-  const p=(h)=>parseInt(h.slice(1),16);
-  const r1=(c)=>[(c>>16)&255,(c>>8)&255,c&255];
-  const [r1a,g1,b1]=r1(p(hex1)), [r2,g2,b2]=r1(p(hex2));
-  const r=Math.round(r1a+(r2-r1a)*t);
-  const g=Math.round(g1+(g2-g1)*t);
-  const b=Math.round(b1+(b2-b1)*t);
-  return `rgb(${r},${g},${b})`;
-}
-
-// ── RENDER ──
-function render() {
-  const canvas = document.getElementById('stageCanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  ctx.clearRect(0,0,200,240);
-  drawCharacter(ctx, state.char, 100, 170, 1, state.head, state.outfit, state.access, state.color);
-}
-
-function renderSmall(canvasId, charIdx) {
-  const c = document.getElementById(canvasId);
-  if (!c) return;
-  const ctx = c.getContext('2d');
-  ctx.clearRect(0,0,c.width,c.height);
-  drawCharacter(ctx, charIdx||0, c.width/2, c.height-18, 0.55, state.head, state.outfit, state.access, state.color);
-}
-
-// ── WARDROBE BUILD ──
-function buildGrid(containerId, items, stateKey) {
-  const cont = document.getElementById(containerId);
-  if (!cont) return;
-  cont.innerHTML='';
-  items.forEach(item => {
-    const btn = document.createElement('button');
-    btn.className = 'wb-item' + (item.id===null?'  wb-none':'');
-    btn.title = item.l;
-    btn.textContent = item.e;
-    if (state[stateKey]===item.id) btn.classList.add('active');
-    btn.onclick=()=>{
-      state[stateKey]=item.id;
-      document.querySelectorAll(`#${containerId} .wb-item`).forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-      render();
-      renderSmall('quizKitty', state.char);
-      rotateFact();
-    };
-    cont.appendChild(btn);
-  });
-}
-
-let factTimer;
-function rotateFact() {
-  const el = document.getElementById('funStrip');
-  if (!el) return;
-  state.factIdx=(state.factIdx+1)%FUN_FACTS.length;
-  el.style.opacity='0';
-  clearTimeout(factTimer);
-  factTimer=setTimeout(()=>{
-    el.textContent = FUN_FACTS[state.factIdx];
-    el.style.opacity='1';
-  },300);
-}
-
-function selectChar(idx) {
-  state.char=idx;
-  document.querySelectorAll('.char-sw-btn').forEach((b,i)=>b.classList.toggle('active',i===idx));
-  render();
-  renderSmall('quizKitty', idx);
-}
-
-// ── INIT WARDROBE ──
-function initWardrobe() {
-  buildGrid('headGrid', HEAD_ITEMS, 'head');
-  buildGrid('outfitGrid', OUTFIT_ITEMS, 'outfit');
-  buildGrid('accessGrid', ACCESS_ITEMS, 'access');
-  buildGrid('colorGrid', COLOR_ITEMS, 'color');
-  render();
-}
-
-// ── QUIZ DATA ──
-const QUESTIONS = [
-  {q:'Qual é a cor do laço que Hello Kitty usa na cabeça?', opts:['Vermelho','Azul','Verde','Amarelo'], c:0, cat:'Hello Kitty', fact:'O laço vermelho é a marca registrada da Hello Kitty desde 1974!'},
-  {q:'Em qual cidade Hello Kitty nasceu oficialmente?', opts:['Tóquio','Paris','Londres','Nova York'], c:2, cat:'Hello Kitty', fact:'Hello Kitty nasceu nos subúrbios de Londres no dia 1° de novembro de 1974!'},
-  {q:'Que tipo de animal é o Cinnamoroll?', opts:['Gato','Coelho','Cachorro','Urso'], c:2, cat:'Cinnamoroll', fact:'Cinnamoroll é um cachorrinho branco com orelhas longas que parecem asas!'},
-  {q:'O que Pompompurin adora comer?', opts:['Pizza','Sorvete','Pudim','Bolo'], c:2, cat:'Pompompurin', fact:'Pompompurin é famoso por seu amor ao pudim! 🍮 Por isso o nome "Purin"!'},
-  {q:'Qual empresa criou Hello Kitty?', opts:['Nintendo','Sanrio','Sony','Bandai'], c:1, cat:'Curiosidades', fact:'A Sanrio foi fundada em 1960 por Shintaro Tsuji no Japão!'},
-  {q:'Qual é a comida favorita da Hello Kitty?', opts:['Sushi','Pizza','Torta de maçã','Hamburger'], c:2, cat:'Hello Kitty', fact:'Hello Kitty adora torta de maçã feita pela mamãe! 🥧'},
-  {q:'Qual cor é predominante na roupa de My Melody?', opts:['Azul','Amarelo','Rosa','Laranja'], c:2, cat:'My Melody', fact:'My Melody usa uma capinha rosa com orelhinhas de coelho!'},
-  {q:'Qual é o nome da irmã gêmea de Hello Kitty?', opts:['My Melody','Mimmy','Charmmy','Tiny Chum'], c:1, cat:'Família', fact:'Mimmy White é irmã gêmea da Hello Kitty e usa laço amarelo na orelha direita!'},
-  {q:'Em que ano Hello Kitty foi criada?', opts:['1960','1974','1980','1995'], c:1, cat:'Curiosidades', fact:'Hello Kitty foi criada em 1974 pela designer Yuko Shimizu!'},
-  {q:'Onde Cinnamoroll mora?', opts:['Em uma casa rosa','No fundo do mar','Em um café nas nuvens','Em uma floresta'], c:2, cat:'Cinnamoroll', fact:'Cinnamoroll vive no "Café Cinnamon" nas nuvens com seus amigos!'},
-];
-
-const qState = { idx:0, score:0, answered:false };
-
-function loadQuestion() {
-  const q = QUESTIONS[qState.idx];
-  document.getElementById('qNum').textContent = `${qState.idx+1}/10`;
-  document.getElementById('progFill').style.width = `${(qState.idx+1)/10*100}%`;
-  document.getElementById('qCat').textContent = q.cat;
-  document.getElementById('qText').textContent = q.q;
-  document.getElementById('scorePill').textContent = qState.score;
-  document.getElementById('feedbackBox').className='feedback-box';
-  document.getElementById('nextBtn').className='next-btn';
-  qState.answered=false;
-
-  const grid = document.getElementById('answersGrid');
-  grid.innerHTML='';
-  const letters=['A','B','C','D'];
-  q.opts.forEach((opt,i)=>{
-    const btn=document.createElement('button');
-    btn.className='ans-btn';
-    btn.innerHTML=`<span class="letter">${letters[i]}</span>${opt}`;
-    btn.onclick=()=>answer(i,btn);
-    grid.appendChild(btn);
-  });
-
-  renderSmall('quizKitty', state.char);
-}
-
-function answer(idx, btn) {
-  if (qState.answered) return;
-  qState.answered=true;
-  const q=QUESTIONS[qState.idx];
-  const ok=idx===q.c;
-  if(ok) qState.score++;
-  btn.classList.add(ok?'correct':'wrong');
-  document.querySelectorAll('.ans-btn')[q.c].classList.add('correct');
-  document.querySelectorAll('.ans-btn').forEach(b=>b.disabled=true);
-  const fb=document.getElementById('feedbackBox');
-  fb.className=`feedback-box ${ok?'correct':'wrong'}`;
-  fb.textContent=ok?`🌟 Correto! ${q.fact}`:`❌ Errado! ${q.fact}`;
-  document.getElementById('scorePill').textContent=qState.score;
-  const nb=document.getElementById('nextBtn');
-  nb.className='next-btn show';
-  if(qState.idx===9) nb.textContent='🎉 Ver resultado!';
-}
-
-function nextQuestion() {
-  qState.idx++;
-  if(qState.idx>=10) showResult();
-  else loadQuestion();
-}
-
-function showResult() {
-  document.getElementById('quizGame').style.display='none';
-  const rs=document.getElementById('quizResult');
-  rs.className='result-screen show';
-  const s=qState.score;
-  let stars,title,msg;
-  if(s===10){stars='⭐⭐⭐⭐⭐';title='Mestre Sanrio! 🏆';msg='Perfeito! Você é uma verdadeira especialista no universo da Hello Kitty! A Sanrio deveria te contratar! 🎀💖'}
-  else if(s>=8){stars='⭐⭐⭐⭐';title='Super Fã! 💖';msg='Parabéns! Você conhece muito bem os personagens da Sanrio! Continue explorando esse mundo fofo! 🌸'}
-  else if(s>=6){stars='⭐⭐⭐';title='Muito Bem! 🌟';msg='Você conhece bastante sobre Hello Kitty! Com um pouco mais de estudo vai virar expert! 🐱'}
-  else if(s>=4){stars='⭐⭐';title='Bom Começo! 🎈';msg='Você está no caminho certo! Explore mais o universo da Sanrio e aprenda muito! 🌷'}
-  else{stars='⭐';title='Continue Tentando! 💪';msg='Não desanime! O mundo da Hello Kitty é enorme e tem muito para descobrir! Tente de novo! ✨'}
-  document.getElementById('resStars').textContent=stars;
-  document.getElementById('resTitle').textContent=title;
-  document.getElementById('resFinal').textContent=s;
-  document.getElementById('resMsg').textContent=msg;
-  const rc=document.getElementById('resChar');
-  const ctx=rc.getContext('2d');
-  ctx.clearRect(0,0,130,160);
-  drawCharacter(ctx,state.char,65,130,0.8,state.head,state.outfit,state.access,state.color);
-}
-
-function restartQuiz() {
-  qState.idx=0; qState.score=0; qState.answered=false;
-  document.getElementById('quizGame').style.display='';
-  document.getElementById('quizResult').className='result-screen';
-  document.getElementById('nextBtn').textContent='Próxima pergunta →';
-  loadQuestion();
-}
-
-// ── START ──
-window.addEventListener('load',()=>{
-  initWardrobe();
-  loadQuestion();
-  setInterval(rotateFact, 8000);
+  draw();
 });
+
+// ── TYPES DATA ────────────────────────────────────────────────────────────────
+const types = [
+  { name:'Ericksoniana', tag:'Sugestão Indireta', desc:'Metáforas e linguagem permissiva. Desenvolvida por Milton Erickson — a mais adaptável e sutil das abordagens hipnóticas.', col:['#ff00ff','#8800ff'] },
+  { name:'Hipnose Clássica', tag:'Sugestão Direta', desc:'Induções formais e comandos diretos. Altamente eficaz para pessoas responsivas a estrutura e autoridade.', col:['#00ffff','#0044ff'] },
+  { name:'Auto-Hipnose', tag:'Autoindução', desc:'Você conduz a si mesmo. Ferramenta poderosa para uso diário em relaxamento, foco e reprogramação de hábitos.', col:['#ffff00','#ff8800'] },
+  { name:'Conversacional', tag:'Linguagem Persuasiva', desc:'Padrões linguísticos sutis que aumentam foco e receptividade durante conversas comuns, sem que o interlocutor perceba.', col:['#00ff88','#00ffff'] },
+  { name:'Hipnose de Relaxamento', tag:'Bem-estar Digital', desc:'Relaxamento muscular progressivo e sugestões de calma. A mais usada em aplicativos e experiências online. Ótima para iniciantes.', col:['#0088ff','#ff00ff'] },
+  { name:'Hipnose Regressiva', tag:'⚠ Uso Criterioso', desc:'Conduz a memórias passadas para explorar origens de traumas. Método controverso — exige profissional habilitado e uso criterioso.', col:['#ff8800','#ff00ff'] },
+  { name:'Hipnose Cognitiva', tag:'Mente e Percepção', desc:'Integra técnicas cognitivas com hipnose para reprogramar pensamentos automáticos, crenças limitantes e padrões de atenção.', col:['#ff00ff','#ffff00'] },
+  { name:'Foco Atencional', tag:'Direcionamento Mental', desc:'Direciona a atenção com precisão para estados específicos. Base para técnicas modernas de performance e mindfulness avançado.', col:['#8800ff','#00ffff'] },
+  { name:'Hipnose Visual', tag:'Imagens e Animações', desc:'Usa estímulos visuais — espirais, padrões, animações — para induzir o estado hipnótico. Ideal para plataformas digitais como esta.', col:['#ffff00','#00ff88'] },
+];
+
+const tGrid = document.getElementById('tGrid');
+types.forEach((tp, i) => {
+  const card = document.createElement('div');
+  card.className = 'type-card';
+  card.innerHTML = `<canvas id="tm${i}" width="46" height="46"></canvas><div class="type-name">${tp.name}</div><div class="type-tag">${tp.tag}</div><p class="type-desc">${tp.desc}</p>`;
+  card.addEventListener('click', () => {
+    const wasActive = card.classList.contains('active');
+    document.querySelectorAll('.type-card').forEach(c => c.classList.remove('active'));
+    if (!wasActive) card.classList.add('active');
+  });
+  tGrid.appendChild(card);
+  (function(idx, cols) {
+    const c = document.getElementById('tm'+idx); if (!c) return;
+    const ctx = c.getContext('2d'); let t = Math.random()*50;
+    function draw() {
+      ctx.clearRect(0,0,46,46);
+      for (let j = 0; j < 80; j++) {
+        const a = j*.11 + t, r = j*.26;
+        const x = 23 + r*Math.cos(a), y = 23 + r*Math.sin(a);
+        ctx.beginPath(); ctx.arc(x,y,.9,0,Math.PI*2);
+        ctx.fillStyle = iColor(cols[0], cols[1], j/80, (1-j/80)*.9); ctx.fill();
+      }
+      t += .05; requestAnimationFrame(draw);
+    }
+    draw();
+  })(i, tp.col);
+});
+
+// ── MAIN PORTAL ───────────────────────────────────────────────────────────────
+let eP = 'arch', eS = 5, eT = 0;
+const mP = document.getElementById('mainPortal');
+const mCtx = mP.getContext('2d');
+const PW = 440, PH = 440, PCX = 220, PCY = 220;
+
+document.querySelectorAll('.pbtn').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('.pbtn').forEach(x => x.classList.remove('active'));
+    b.classList.add('active'); eP = b.dataset.p; eT = 0;
+    mCtx.clearRect(0,0,PW,PH);
+  });
+});
+
+const sld = document.getElementById('spd'), sldv = document.getElementById('spdv');
+sld.addEventListener('input', () => { eS = parseInt(sld.value); sldv.textContent = sld.value; });
+
+// glow pulse
+const glow = document.getElementById('pGlow');
+let gT = 0;
+function updateGlow() {
+  const hue = (gT*20) % 360;
+  glow.style.boxShadow = `0 0 60px hsla(${hue},100%,60%,0.4), 0 0 120px hsla(${(hue+60)%360},100%,50%,0.2)`;
+  gT += .03; requestAnimationFrame(updateGlow);
+}
+updateGlow();
+
+function drawPortal() {
+  mCtx.fillStyle = 'rgba(0,0,0,0.2)'; mCtx.fillRect(0,0,PW,PH);
+
+  // ── ARCO-ÍRIS ESPIRAL ──
+  if (eP === 'arch') {
+    for (let arm = 0; arm < 5; arm++) {
+      const off = arm * (Math.PI*2/5);
+      for (let i = 0; i < 550; i++) {
+        const progress = i/550;
+        const a = i*.07 + eT + off, r = i*.39;
+        const x = PCX + r*Math.cos(a), y = PCY + r*Math.sin(a);
+        if (x<0||x>PW||y<0||y>PH) continue;
+        const hue = (i*1.2 + arm*72 + eT*50) % 360;
+        mCtx.beginPath(); mCtx.arc(x,y,1.2+progress*1.5,0,Math.PI*2);
+        mCtx.fillStyle = `hsla(${hue},100%,65%,${(1-progress)*.85})`; mCtx.fill();
+      }
+    }
+    const g = mCtx.createRadialGradient(PCX,PCY,0,PCX,PCY,30);
+    g.addColorStop(0,`hsla(${(eT*60)%360},100%,90%,1)`); g.addColorStop(1,'transparent');
+    mCtx.beginPath(); mCtx.arc(PCX,PCY,30,0,Math.PI*2); mCtx.fillStyle = g; mCtx.fill();
+  }
+
+  // ── FLOR DA VIDA ──
+  else if (eP === 'flower') {
+    for (let ring = 0; ring < 8; ring++) {
+      const petals = 6 + ring*2;
+      for (let p = 0; p < petals; p++) {
+        const baseAngle = (p/petals)*Math.PI*2 + eT*(ring%2===0?1:-1)*.5;
+        const dist = 18 + ring*22;
+        const px = PCX + dist*Math.cos(baseAngle), py = PCY + dist*Math.sin(baseAngle);
+        const hue = (ring*30 + p*15 + eT*40) % 360;
+        const radius = 14 + Math.sin(eT*3+ring+p)*6;
+        mCtx.beginPath(); mCtx.arc(px,py,radius,0,Math.PI*2);
+        mCtx.strokeStyle = `hsla(${hue},100%,65%,${.7-ring*.07})`; mCtx.lineWidth = 1; mCtx.stroke();
+        mCtx.beginPath(); mCtx.arc(px,py,2,0,Math.PI*2);
+        mCtx.fillStyle = `hsla(${hue},100%,80%,.9)`; mCtx.fill();
+      }
+    }
+    for (let i = 0; i < 6; i++) {
+      const a = (i/6)*Math.PI*2 + eT*.3;
+      mCtx.beginPath(); mCtx.moveTo(PCX,PCY); mCtx.lineTo(PCX+170*Math.cos(a),PCY+170*Math.sin(a));
+      mCtx.strokeStyle = `hsla(${(i*60+eT*30)%360},100%,60%,.08)`; mCtx.lineWidth = .8; mCtx.stroke();
+    }
+    const g2 = mCtx.createRadialGradient(PCX,PCY,0,PCX,PCY,22);
+    g2.addColorStop(0,`hsla(${(eT*50)%360},100%,90%,.9)`); g2.addColorStop(1,'transparent');
+    mCtx.beginPath(); mCtx.arc(PCX,PCY,22,0,Math.PI*2); mCtx.fillStyle = g2; mCtx.fill();
+  }
+
+  // ── DUPLA HÉLICE ──
+  else if (eP === 'dna') {
+    for (let s = 0; s < 3; s++) {
+      const off = (s/3)*Math.PI*2;
+      for (let i = 0; i < 360; i++) {
+        const progress = i/360;
+        const angle = (progress*Math.PI*10) + eT + off;
+        const r = progress*170;
+        const x = PCX + r*Math.cos(angle), y = PCY + r*Math.sin(angle);
+        const hue = (s*120 + i*.8 + eT*45) % 360;
+        const alpha = (1-progress)*.9 + .1;
+        mCtx.beginPath(); mCtx.arc(x,y,1.5+progress*2,0,Math.PI*2);
+        mCtx.fillStyle = `hsla(${hue},100%,65%,${alpha})`; mCtx.fill();
+      }
+    }
+    for (let i = 0; i < 40; i++) {
+      const progress = i/40;
+      const angle = (progress*Math.PI*10) + eT;
+      const r = 170*progress;
+      const x1 = PCX + r*Math.cos(angle), y1 = PCY + r*Math.sin(angle);
+      const x2 = PCX + r*Math.cos(angle+Math.PI*(2/3)), y2 = PCY + r*Math.sin(angle+Math.PI*(2/3));
+      mCtx.beginPath(); mCtx.moveTo(x1,y1); mCtx.lineTo(x2,y2);
+      mCtx.strokeStyle = `hsla(${(i*9+eT*40)%360},100%,65%,.25)`; mCtx.lineWidth = .8; mCtx.stroke();
+    }
+  }
+
+  // ── OLHO DO INFINITO ──
+  else if (eP === 'eye') {
+    for (let layer = 0; layer < 20; layer++) {
+      const prog = layer/20;
+      const rx = 10 + (1-prog)*190, ry = rx*(0.3+prog*0.5);
+      const rot = eT*(layer%2===0?1.5:-1) + layer*.4;
+      mCtx.save(); mCtx.translate(PCX,PCY); mCtx.rotate(rot);
+      mCtx.beginPath(); mCtx.ellipse(0,0,rx,ry,0,0,Math.PI*2);
+      mCtx.strokeStyle = `hsla(${(layer*18+eT*40)%360},100%,65%,${.6-prog*.25})`; mCtx.lineWidth = .9; mCtx.stroke();
+      mCtx.restore();
+    }
+    for (let i = 0; i < 24; i++) {
+      const a = (i/24)*Math.PI*2 + eT;
+      const inner = 20 + Math.sin(eT*4+i)*8, outer = 80 + Math.cos(eT*2+i*.5)*20;
+      mCtx.beginPath();
+      mCtx.moveTo(PCX+inner*Math.cos(a), PCY+inner*Math.sin(a));
+      mCtx.lineTo(PCX+outer*Math.cos(a), PCY+outer*Math.sin(a));
+      mCtx.strokeStyle = `hsla(${(i*15+eT*50)%360},100%,65%,.4)`; mCtx.lineWidth = 1; mCtx.stroke();
+    }
+    const g3 = mCtx.createRadialGradient(PCX,PCY,0,PCX,PCY,25);
+    g3.addColorStop(0,'rgba(0,0,0,1)'); g3.addColorStop(.7,`hsla(${(eT*60)%360},100%,40%,.8)`); g3.addColorStop(1,'transparent');
+    mCtx.beginPath(); mCtx.arc(PCX,PCY,25,0,Math.PI*2); mCtx.fillStyle = g3; mCtx.fill();
+    mCtx.beginPath(); mCtx.arc(PCX-8,PCY-8,5,0,Math.PI*2); mCtx.fillStyle = 'rgba(255,255,255,0.7)'; mCtx.fill();
+  }
+
+  // ── FRACTAL HIPNÓTICO ──
+  else if (eP === 'fractal') {
+    for (let depth = 0; depth < 10; depth++) {
+      const sides = 3 + depth, scale = 1-depth*.085, r = 195*scale;
+      const rot = eT*(depth%2===0?1:-1.3) + depth*.7;
+      mCtx.save(); mCtx.translate(PCX,PCY); mCtx.rotate(rot);
+      mCtx.beginPath();
+      for (let i = 0; i <= sides; i++) {
+        const a = (i/sides)*Math.PI*2;
+        i===0 ? mCtx.moveTo(r*Math.cos(a),r*Math.sin(a)) : mCtx.lineTo(r*Math.cos(a),r*Math.sin(a));
+      }
+      mCtx.closePath();
+      mCtx.strokeStyle = `hsla(${(depth*36+eT*45)%360},100%,65%,${.7-depth*.05})`; mCtx.lineWidth = 1; mCtx.stroke();
+      for (let i = 0; i < sides; i++) {
+        const a = (i/sides)*Math.PI*2;
+        mCtx.beginPath(); mCtx.arc(r*Math.cos(a),r*Math.sin(a),3-depth*.2,0,Math.PI*2);
+        mCtx.fillStyle = `hsla(${(depth*36+eT*45)%360},100%,80%,.8)`; mCtx.fill();
+      }
+      mCtx.restore();
+    }
+    for (let i = 0; i < 8; i++) {
+      const a = (i/8)*Math.PI + eT*.4;
+      mCtx.beginPath(); mCtx.moveTo(PCX+210*Math.cos(a),PCY+210*Math.sin(a)); mCtx.lineTo(PCX-210*Math.cos(a),PCY-210*Math.sin(a));
+      mCtx.strokeStyle = `hsla(${(i*45+eT*30)%360},100%,60%,.07)`; mCtx.lineWidth = 1; mCtx.stroke();
+    }
+    const gf = mCtx.createRadialGradient(PCX,PCY,0,PCX,PCY,35);
+    gf.addColorStop(0,`hsla(${(eT*70)%360},100%,90%,.9)`); gf.addColorStop(1,'transparent');
+    mCtx.beginPath(); mCtx.arc(PCX,PCY,35,0,Math.PI*2); mCtx.fillStyle = gf; mCtx.fill();
+  }
+
+  // ── AURORA MENTAL ──
+  else if (eP === 'aurora') {
+    for (let r = 0; r < 12; r++) {
+      const off = (r/12)*Math.PI*2;
+      mCtx.beginPath(); let first = true;
+      for (let i = 0; i < 200; i++) {
+        const progress = i/200;
+        const t2 = progress*Math.PI*4 + eT*2 + off;
+        const baseR = 50 + progress*150;
+        const wave1 = Math.sin(t2*1.5 + eT*1.3 + r)*25;
+        const wave2 = Math.cos(t2*2.1 - eT + r*.7)*15;
+        const rr = baseR + wave1 + wave2;
+        const a = progress*Math.PI*2 + eT*.8 + off*.5;
+        const x = PCX + rr*Math.cos(a), y = PCY + rr*Math.sin(a);
+        first ? (mCtx.moveTo(x,y), first=false) : mCtx.lineTo(x,y);
+      }
+      mCtx.strokeStyle = `hsla(${(r*30+eT*35)%360},100%,65%,0.35)`; mCtx.lineWidth = 2; mCtx.stroke();
+    }
+    for (let i = 0; i < 120; i++) {
+      const a = (i/120)*Math.PI*2 + eT*.3;
+      const r2 = 60 + Math.sin(i*.3+eT*3)*90;
+      const x = PCX + r2*Math.cos(a), y = PCY + r2*Math.sin(a);
+      mCtx.beginPath(); mCtx.arc(x,y,1.5+Math.sin(i+eT*4)*.8,0,Math.PI*2);
+      mCtx.fillStyle = `hsla(${(i*3+eT*50)%360},100%,80%,.6)`; mCtx.fill();
+    }
+    const ga = mCtx.createRadialGradient(PCX,PCY,0,PCX,PCY,45);
+    ga.addColorStop(0,`hsla(${(eT*55)%360},100%,85%,.85)`); ga.addColorStop(1,'transparent');
+    mCtx.beginPath(); mCtx.arc(PCX,PCY,45,0,Math.PI*2); mCtx.fillStyle = ga; mCtx.fill();
+  }
+
+  eT += 0.005 * eS;
+  requestAnimationFrame(drawPortal);
+}
+drawPortal();
 </script>
 </body>
 </html>
+Exibindo hipnose trabalho.html…
